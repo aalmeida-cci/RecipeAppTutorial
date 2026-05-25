@@ -2,6 +2,7 @@ package com.adrian.recipeapp.features.feed.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -52,20 +53,23 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun FeedRoute(
+    feedViewModel: FeedViewModel = koinViewModel(),
     navigateToSearch: () -> Unit,
-    feedViewModel: FeedViewModel = koinViewModel()
+    navigateToDetail: (Long) -> Unit
 ) {
     val feedUiState = feedViewModel.feedUiState.collectAsState()
     FeedScreen(
         feedUiState = feedUiState.value,
-        navigateToSearch = navigateToSearch
+        navigateToSearch = navigateToSearch,
+        navigateToDetail = navigateToDetail,
     )
 }
 
 @Composable
 fun FeedScreen(
     feedUiState: FeedUiState,
-    navigateToSearch: () -> Unit
+    navigateToSearch: () -> Unit,
+    navigateToDetail: (Long) -> Unit
 ) {
 
     Column(
@@ -89,7 +93,7 @@ fun FeedScreen(
                 }
 
                 recipes != null -> {
-                    FeedContent(innerPadding, recipes)
+                    FeedContent(innerPadding, recipes, navigateToDetail = navigateToDetail)
                 }
             }
         }
@@ -130,7 +134,7 @@ private fun TopBar() {
             .windowInsetsPadding(WindowInsets.statusBars)
             .background(MaterialTheme.colorScheme.background)
             //.padding(16.dp)
-           .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
+            .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
     ) {
         Text(
             text = "Hi there!",
@@ -185,7 +189,11 @@ private fun SearchBar(modifier: Modifier) {
 }
 
 @Composable
-private fun FeedContent(innerPadding: PaddingValues, recipes: List<RecipeItem>) {
+private fun FeedContent(
+    innerPadding: PaddingValues,
+    recipes: List<RecipeItem>,
+    navigateToDetail: (Long) -> Unit,
+) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -197,17 +205,24 @@ private fun FeedContent(innerPadding: PaddingValues, recipes: List<RecipeItem>) 
         item(
             span = { GridItemSpan(maxLineSpan) }
         ) {
-            TopRecipesList(title = "Top Recommendations", recipes = recipes.reversed())
+            TopRecipesList(
+                title = "Top Recommendations", recipes = recipes.reversed(),
+                navigateToDetail = navigateToDetail,
+            )
         }
 
-        recipesOfTheWeek("Recipes Of the Week", recipes = recipes)
+        recipesOfTheWeek(
+            "Recipes Of the Week", recipes = recipes,
+            navigateToDetail = navigateToDetail,
+        )
     }
 }
 
 @Composable
 fun TopRecipesList(
     title: String,
-    recipes: List<RecipeItem>
+    recipes: List<RecipeItem>,
+    navigateToDetail: (Long) -> Unit,
 ) {
     Column {
         Text(
@@ -227,7 +242,8 @@ fun TopRecipesList(
                 RecipeCard(
                     recipe,
                     modifier = Modifier.width(115.dp),
-                    imageModifier = imageModifier
+                    imageModifier = imageModifier,
+                    navigateToDetail,
                 )
             }
 
@@ -239,7 +255,8 @@ fun TopRecipesList(
 
 private fun LazyGridScope.recipesOfTheWeek(
     title: String,
-    recipes: List<RecipeItem>
+    recipes: List<RecipeItem>,
+    navigateToDetail: (Long) -> Unit,
 ) {
     item(
         span = { GridItemSpan(maxLineSpan) }
@@ -265,7 +282,8 @@ private fun LazyGridScope.recipesOfTheWeek(
                 start = cardPaddingStart,
                 end = cardPaddingEnd,
             ),
-            imageModifier
+            imageModifier,
+            navigateToDetail,
         )
     }
 }
@@ -275,10 +293,13 @@ private fun RecipeCard(
     recipe: RecipeItem,
     modifier: Modifier,
     imageModifier: Modifier,
+    navigateToDetail: (Long) -> Unit,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier
+        modifier = modifier.clickable {
+            navigateToDetail(recipe.id)
+        }
     ) {
         AsyncImage(
             model = recipe.imageUrl,
