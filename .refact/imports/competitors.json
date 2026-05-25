@@ -1,0 +1,303 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "competitor": "claude_code",
+      "kind": "skill",
+      "source_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.claude/skills/speckit-analyze",
+      "source_hash": "35e04ab766cc855536c2ba76eb601e99153b0889e731e840042828da9b2619ed",
+      "dest_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.refact/skills/speckit-analyze",
+      "dest_hash": "35e04ab766cc855536c2ba76eb601e99153b0889e731e840042828da9b2619ed",
+      "importer_version": "competitor_import_v2",
+      "last_imported_at": "2026-05-25T10:14:44.062342Z",
+      "metadata": {
+        "original_name": "speckit-analyze",
+        "generated_name": "speckit-analyze",
+        "original_description": "Perform a non-destructive cross-artifact consistency and quality analysis across spec.md, plan.md, and tasks.md after task generation.",
+        "rewrote_skill_md": true
+      }
+    },
+    {
+      "competitor": "claude_code",
+      "kind": "skill",
+      "source_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.claude/skills/speckit-checklist",
+      "source_hash": "63784a4fa24f226fa073e5cb62bfd14d41a07dca7e903ecb5cb132de8196db0b",
+      "dest_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.refact/skills/speckit-checklist",
+      "dest_hash": "63784a4fa24f226fa073e5cb62bfd14d41a07dca7e903ecb5cb132de8196db0b",
+      "importer_version": "competitor_import_v2",
+      "last_imported_at": "2026-05-25T10:14:44.063714Z",
+      "metadata": {
+        "original_name": "speckit-checklist",
+        "generated_name": "speckit-checklist",
+        "original_description": "Generate a custom checklist for the current feature based on user requirements.",
+        "rewrote_skill_md": true
+      }
+    },
+    {
+      "competitor": "claude_code",
+      "kind": "skill",
+      "source_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.claude/skills/speckit-clarify",
+      "source_hash": "4c9fc59d1090b6224e1ff8e1867b81d93cd8acf8e27a490e8150488987ac57da",
+      "dest_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.refact/skills/speckit-clarify",
+      "dest_hash": "4c9fc59d1090b6224e1ff8e1867b81d93cd8acf8e27a490e8150488987ac57da",
+      "importer_version": "competitor_import_v2",
+      "last_imported_at": "2026-05-25T10:14:44.066318Z",
+      "metadata": {
+        "original_name": "speckit-clarify",
+        "generated_name": "speckit-clarify",
+        "original_description": "Identify underspecified areas in the current feature spec by asking up to 5 highly targeted clarification questions and encoding answers back into the spec.",
+        "rewrote_skill_md": true
+      }
+    },
+    {
+      "competitor": "claude_code",
+      "kind": "skill",
+      "source_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.claude/skills/speckit-constitution",
+      "source_hash": "c3287a0fa7d41396da92ab0513802674395571e0188a49428f09d24021d51744",
+      "dest_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.refact/skills/speckit-constitution",
+      "dest_hash": "c3287a0fa7d41396da92ab0513802674395571e0188a49428f09d24021d51744",
+      "importer_version": "competitor_import_v2",
+      "last_imported_at": "2026-05-25T10:14:44.069681Z",
+      "metadata": {
+        "original_name": "speckit-constitution",
+        "generated_name": "speckit-constitution",
+        "original_description": "Create or update the project constitution from interactive or provided principle inputs, ensuring all dependent templates stay in sync.",
+        "rewrote_skill_md": true
+      }
+    },
+    {
+      "competitor": "claude_code",
+      "kind": "skill",
+      "source_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.claude/skills/speckit-git-commit",
+      "source_hash": "6c97fa26c0dd1e615019d9af9ba0a61c5c8587cc15dad725382464b2e909795b",
+      "dest_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.refact/skills/speckit-git-commit",
+      "dest_hash": "6c97fa26c0dd1e615019d9af9ba0a61c5c8587cc15dad725382464b2e909795b",
+      "importer_version": "competitor_import_v2",
+      "last_imported_at": "2026-05-25T10:14:44.070994Z",
+      "metadata": {
+        "original_name": "speckit-git-commit",
+        "generated_name": "speckit-git-commit",
+        "original_description": "Auto-commit changes after a Spec Kit command completes",
+        "rewrote_skill_md": true
+      }
+    },
+    {
+      "competitor": "claude_code",
+      "kind": "skill",
+      "source_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.claude/skills/speckit-git-feature",
+      "source_hash": "052823d5387001607186989ff3be0850b7878c815411b581d6e43e4c841b37fc",
+      "dest_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.refact/skills/speckit-git-feature",
+      "dest_hash": "052823d5387001607186989ff3be0850b7878c815411b581d6e43e4c841b37fc",
+      "importer_version": "competitor_import_v2",
+      "last_imported_at": "2026-05-25T10:14:44.071876Z",
+      "metadata": {
+        "original_name": "speckit-git-feature",
+        "generated_name": "speckit-git-feature",
+        "original_description": "Create a feature branch with sequential or timestamp numbering",
+        "rewrote_skill_md": true
+      }
+    },
+    {
+      "competitor": "claude_code",
+      "kind": "skill",
+      "source_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.claude/skills/speckit-git-initialize",
+      "source_hash": "25f3656d12d9cba902fa0019af2618ca9383c3c180b6e41f7477324fccc4170f",
+      "dest_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.refact/skills/speckit-git-initialize",
+      "dest_hash": "25f3656d12d9cba902fa0019af2618ca9383c3c180b6e41f7477324fccc4170f",
+      "importer_version": "competitor_import_v2",
+      "last_imported_at": "2026-05-25T10:14:44.074581Z",
+      "metadata": {
+        "original_name": "speckit-git-initialize",
+        "generated_name": "speckit-git-initialize",
+        "original_description": "Initialize a Git repository with an initial commit",
+        "rewrote_skill_md": true
+      }
+    },
+    {
+      "competitor": "claude_code",
+      "kind": "skill",
+      "source_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.claude/skills/speckit-git-remote",
+      "source_hash": "0812d9fbc8842bc7980bcb915ae49628fff67b53f4dd58b96e8b77785465578d",
+      "dest_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.refact/skills/speckit-git-remote",
+      "dest_hash": "0812d9fbc8842bc7980bcb915ae49628fff67b53f4dd58b96e8b77785465578d",
+      "importer_version": "competitor_import_v2",
+      "last_imported_at": "2026-05-25T10:14:44.075479Z",
+      "metadata": {
+        "original_name": "speckit-git-remote",
+        "generated_name": "speckit-git-remote",
+        "original_description": "Detect Git remote URL for GitHub integration",
+        "rewrote_skill_md": true
+      }
+    },
+    {
+      "competitor": "claude_code",
+      "kind": "skill",
+      "source_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.claude/skills/speckit-git-validate",
+      "source_hash": "10207456bdd828fd286232927c3c317706bc856989f1a32ff0bb90d3cb64ba94",
+      "dest_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.refact/skills/speckit-git-validate",
+      "dest_hash": "10207456bdd828fd286232927c3c317706bc856989f1a32ff0bb90d3cb64ba94",
+      "importer_version": "competitor_import_v2",
+      "last_imported_at": "2026-05-25T10:14:44.076196Z",
+      "metadata": {
+        "original_name": "speckit-git-validate",
+        "generated_name": "speckit-git-validate",
+        "original_description": "Validate current branch follows feature branch naming conventions",
+        "rewrote_skill_md": true
+      }
+    },
+    {
+      "competitor": "claude_code",
+      "kind": "skill",
+      "source_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.claude/skills/speckit-implement",
+      "source_hash": "4626fe07abda2dffe653d7dd2e6f2ead83af9b99dbba10d1ad5c5a6231bfecde",
+      "dest_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.refact/skills/speckit-implement",
+      "dest_hash": "4626fe07abda2dffe653d7dd2e6f2ead83af9b99dbba10d1ad5c5a6231bfecde",
+      "importer_version": "competitor_import_v2",
+      "last_imported_at": "2026-05-25T10:14:44.077136Z",
+      "metadata": {
+        "original_name": "speckit-implement",
+        "generated_name": "speckit-implement",
+        "original_description": "Execute the implementation plan by processing and executing all tasks defined in tasks.md",
+        "rewrote_skill_md": true
+      }
+    },
+    {
+      "competitor": "claude_code",
+      "kind": "skill",
+      "source_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.claude/skills/speckit-plan",
+      "source_hash": "f73c3b19b0619ece962ff0e52387141f9b375ecf27705d52079a0086a202426e",
+      "dest_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.refact/skills/speckit-plan",
+      "dest_hash": "f73c3b19b0619ece962ff0e52387141f9b375ecf27705d52079a0086a202426e",
+      "importer_version": "competitor_import_v2",
+      "last_imported_at": "2026-05-25T10:14:44.089256Z",
+      "metadata": {
+        "original_name": "speckit-plan",
+        "generated_name": "speckit-plan",
+        "original_description": "Execute the implementation planning workflow using the plan template to generate design artifacts.",
+        "rewrote_skill_md": true
+      }
+    },
+    {
+      "competitor": "claude_code",
+      "kind": "skill",
+      "source_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.claude/skills/speckit-specify",
+      "source_hash": "0fe4c2a8e7d78fb68a5b8b5b0fceed64bde6f975aefd9b5fd4aee4a7f1eed637",
+      "dest_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.refact/skills/speckit-specify",
+      "dest_hash": "0fe4c2a8e7d78fb68a5b8b5b0fceed64bde6f975aefd9b5fd4aee4a7f1eed637",
+      "importer_version": "competitor_import_v2",
+      "last_imported_at": "2026-05-25T10:14:44.090633Z",
+      "metadata": {
+        "original_name": "speckit-specify",
+        "generated_name": "speckit-specify",
+        "original_description": "Create or update the feature specification from a natural language feature description.",
+        "rewrote_skill_md": true
+      }
+    },
+    {
+      "competitor": "claude_code",
+      "kind": "skill",
+      "source_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.claude/skills/speckit-tasks",
+      "source_hash": "a838094a18088f5872f16fb4cce7fea6f34834e7843ea96a9850904d310542f0",
+      "dest_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.refact/skills/speckit-tasks",
+      "dest_hash": "a838094a18088f5872f16fb4cce7fea6f34834e7843ea96a9850904d310542f0",
+      "importer_version": "competitor_import_v2",
+      "last_imported_at": "2026-05-25T10:14:44.092056Z",
+      "metadata": {
+        "original_name": "speckit-tasks",
+        "generated_name": "speckit-tasks",
+        "original_description": "Generate an actionable, dependency-ordered tasks.md for the feature based on available design artifacts.",
+        "rewrote_skill_md": true
+      }
+    },
+    {
+      "competitor": "claude_code",
+      "kind": "skill",
+      "source_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.claude/skills/speckit-taskstoissues",
+      "source_hash": "8ba9661269f6cac8c6ac469a572485fc2052853bc195143dcaa131296a58c31b",
+      "dest_path": "/Users/adrian.almeida/AndroidStudioProjects/RecipeApp/.refact/skills/speckit-taskstoissues",
+      "dest_hash": "8ba9661269f6cac8c6ac469a572485fc2052853bc195143dcaa131296a58c31b",
+      "importer_version": "competitor_import_v2",
+      "last_imported_at": "2026-05-25T10:14:44.092865Z",
+      "metadata": {
+        "original_name": "speckit-taskstoissues",
+        "generated_name": "speckit-taskstoissues",
+        "original_description": "Convert existing tasks into actionable, dependency-ordered GitHub issues for the feature based on available design artifacts.",
+        "rewrote_skill_md": true
+      }
+    }
+  ],
+  "last_report": {
+    "generated_at": "2026-05-25T10:14:43.987008+00:00",
+    "completed_at": "2026-05-25T10:14:44.093358+00:00",
+    "reported_scopes": [
+      {
+        "scope_kind": "project",
+        "scope_id": "c0b6e00710c81fc8",
+        "label": "project workspace"
+      }
+    ],
+    "reported_sources": [
+      {
+        "competitor": "claude_code",
+        "scope_kind": "project",
+        "scope_id": "c0b6e00710c81fc8",
+        "source_label": ".claude"
+      },
+      {
+        "competitor": "open_code",
+        "scope_kind": "project",
+        "scope_id": "c0b6e00710c81fc8",
+        "source_label": ".opencode"
+      },
+      {
+        "competitor": "kilo_code",
+        "scope_kind": "project",
+        "scope_id": "c0b6e00710c81fc8",
+        "source_label": ".kilo"
+      },
+      {
+        "competitor": "kilo_code",
+        "scope_kind": "project",
+        "scope_id": "c0b6e00710c81fc8",
+        "source_label": ".kilocode"
+      },
+      {
+        "competitor": "continue_dev",
+        "scope_kind": "project",
+        "scope_id": "c0b6e00710c81fc8",
+        "source_label": ".continue"
+      }
+    ],
+    "discovered_candidates": 14,
+    "status_counts": {
+      "created": 14
+    },
+    "competitor_counts": {
+      "claude_code": {
+        "discovered": 14,
+        "created": 14,
+        "updated": 0,
+        "unchanged": 0,
+        "stale": 0,
+        "conflicts": 0,
+        "user_modified": 0,
+        "unsupported": 0,
+        "errors": 0
+      }
+    },
+    "kind_counts": {
+      "skill": {
+        "discovered": 14,
+        "created": 14,
+        "updated": 0,
+        "unchanged": 0,
+        "stale": 0,
+        "conflicts": 0,
+        "user_modified": 0,
+        "unsupported": 0,
+        "errors": 0
+      }
+    },
+    "top_issues": []
+  }
+}

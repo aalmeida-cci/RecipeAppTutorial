@@ -15,6 +15,7 @@ import recipeapp.composeapp.generated.resources.profile
 import recipeapp.composeapp.generated.resources.profile_selected
 import recipeapp.composeapp.generated.resources.profile_unselected
 import recipeapp.composeapp.generated.resources.search
+import recipeapp.composeapp.generated.resources.splash
 import recipeapp.composeapp.generated.resources.tabs
 
 
@@ -25,6 +26,7 @@ sealed class Screen(
     val unselectedIcon: DrawableResource? = null,
 ) {
 
+    data object Splash : Screen("splash", Res.string.splash)
     data object Search : Screen("search", Res.string.search)
     data object Tabs : Screen("tabs", Res.string.tabs)
     data object Detail : Screen("detail?$RECIPE_ID_ARG={$RECIPE_ID_ARG}", Res.string.detail)
