@@ -8,13 +8,14 @@ import com.adrian.recipeapp.features.app.data.AppState
 import com.adrian.recipeapp.features.app.data.Screen
 import com.adrian.recipeapp.features.detail.navigation.detailNavGraph
 import com.adrian.recipeapp.features.search.navigation.searchNavGraph
+import com.adrian.recipeapp.features.splash.navigation.splashNavGraph
 import com.adrian.recipeapp.features.tabs.navigation.tabsNavGraph
 
 @Composable
 fun AppNavHost(
     modifier: Modifier = Modifier,
     appState: AppState,
-    startDestination: String = Screen.Tabs.route
+    startDestination: String = Screen.Splash.route
 ) {
     val navController = appState.navController
     val tabNavController = rememberNavController()
@@ -23,10 +24,20 @@ fun AppNavHost(
         navController = navController,
         startDestination = startDestination
     ) {
+        splashNavGraph(
+            onSplashComplete = {
+                navController.navigate(Screen.Tabs.route) {
+                    popUpTo(Screen.Splash.route) { inclusive = true }
+                }
+            }
+        )
         tabsNavGraph(
-            tabNavController = tabNavController
+            tabNavController = tabNavController,
+            navigateToDetail = {
+                appState.navigateToDetail(it)
+            }
         )
         searchNavGraph()
-        detailNavGraph()
+        detailNavGraph(onBackClick = appState::navigateBack)
     }
 }
