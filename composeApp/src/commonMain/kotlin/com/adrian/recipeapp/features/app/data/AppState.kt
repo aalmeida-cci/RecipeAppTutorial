@@ -6,6 +6,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavHostController
 import com.adrian.recipeapp.features.detail.navigation.navigateToDetail
+import com.adrian.recipeapp.features.search.navigation.navigateToSearch
 import com.adrian.recipeapp.features.tabs.navigation.navigateToTabs
 import kotlinx.coroutines.CoroutineScope
 
@@ -30,6 +31,8 @@ class AppState(
     fun navigateToTabs() = navController.navigateToTabs()
 
     fun navigateToDetail(id: Long) = navController.navigateToDetail(id = id)
+
+    fun navigateToSearch() = navController.navigateToSearch()
 
     fun navigateBack() = navController.navigateUp()
 }

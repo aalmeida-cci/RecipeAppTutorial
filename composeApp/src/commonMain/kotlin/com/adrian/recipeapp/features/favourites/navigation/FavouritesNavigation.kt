@@ -11,8 +11,12 @@ fun NavController.navigateToFavourites(navOptions: NavOptions ? = null) {
     navigate(Screen.Favorites.route)
 }
 
-fun NavGraphBuilder.favouritesNavGraph() {
+fun NavGraphBuilder.favouritesNavGraph(
+    navigateToDetail: (Long) -> Unit
+) {
     composable(Screen.Favorites.route) {
-        FavouritesRoute()
+        FavouritesRoute(
+            navigateToDetail = navigateToDetail
+        )
     }
 }

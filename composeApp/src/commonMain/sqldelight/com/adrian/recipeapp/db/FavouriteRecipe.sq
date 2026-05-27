@@ -1,0 +1,35 @@
+CREATE TABLE FavouriteRecipe(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    recipe_id INTEGER UNIQUE NOT NULL,
+    added_at TEXT NOT NULL,
+    FOREIGN KEY (recipe_id) REFERENCES Recipe(id) ON DELETE CASCADE
+);
+
+insertFavourite:
+INSERT INTO FavouriteRecipe(recipe_id, added_at)
+VALUES(?, ?);
+
+upsertRecipe {
+    UPDATE FavouriteRecipe
+    SET added_at = :added_at
+    WHERE recipe_id = :recipe_id;
+
+    INSERT OR IGNORE INTO FavouriteRecipe(recipe_id, added_at)
+    VALUES(:recipe_id, :added_at);
+}
+
+selectAllFavouritesRecipeIds:
+SELECT id FROM FavouriteRecipe;
+
+selectAllFavouritesRecipes:
+SELECT Recipe.* FROM Recipe INNER JOIN FavouriteRecipe ON Recipe.id = FavouriteRecipe.recipe_id;
+
+selectFavouriteRecipeById:
+SELECT * FROM FavouriteRecipe WHERE recipe_id = ?;
+
+deleteFavouriteRecipeById:
+DELETE FROM FavouriteRecipe WHERE recipe_id = ?;
+
+deleteAllFavouriteRecipes:
+DELETE FROM FavouriteRecipe;
+

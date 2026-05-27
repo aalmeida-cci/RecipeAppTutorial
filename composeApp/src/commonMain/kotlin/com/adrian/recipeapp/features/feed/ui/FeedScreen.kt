@@ -49,6 +49,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.adrian.recipeapp.features.common.domain.entities.RecipeItem
+import com.adrian.recipeapp.features.common.ui.components.ErrorContent
+import com.adrian.recipeapp.features.common.ui.components.Loader
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -80,7 +82,7 @@ fun FeedScreen(
         val recipes = feedUiState.recipesList
         Scaffold(
             topBar = {
-                TopBar()
+                TopBar(navigateToSearch)
             }
         ) { innerPadding ->
             when {
@@ -101,34 +103,7 @@ fun FeedScreen(
 }
 
 @Composable
-private fun Loader() {
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        CircularProgressIndicator(color = MaterialTheme.colorScheme.primaryContainer)
-    }
-}
-
-@Composable
-private fun ErrorContent() {
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Text(
-            "Error in loading Items",
-            style = MaterialTheme.typography.bodyLarge.copy(
-                color = MaterialTheme.colorScheme.error
-            )
-        )
-    }
-}
-
-@Composable
-private fun TopBar() {
+private fun TopBar(navigateToSearch: () -> Unit) {
     Column(
         modifier = Modifier
             .windowInsetsPadding(WindowInsets.statusBars)
@@ -161,6 +136,9 @@ private fun TopBar() {
                     )
                 )
                 .padding(horizontal = 16.dp)
+                .clickable {
+                    navigateToSearch()
+                }
         )
     }
 }

@@ -62,26 +62,34 @@ fun DetailRoute(
         detailViewModel.getRecipeDetail(id = recipeId)
     }
     val detailUiState = detailViewModel.detailUiState.collectAsState()
+    val favUiState = detailViewModel.updateFavUiState.collectAsState()
     val uriHandler = LocalUriHandler.current
     val onWatchVideoClick: (String) -> Unit = { link ->
         if (link.isNotEmpty()) {
             uriHandler.openUri(link)
         }
     }
+    val onFavClick: (RecipeItem) -> Unit = {
+        detailViewModel.updateFavourite(it.id, !it.isFavorite)
+    }
+
     DetailScreen(
         detailUiState.value,
+        favUiState.value,
         onBackClick = onBackClick,
         onWatchVideoClick = onWatchVideoClick,
+        onFavClick = onFavClick,
     )
 }
 
 @Composable
 fun DetailScreen(
     uiState: RecipeDetailUiState,
+    favUiState: RecipeDetailUpdateFavUiState,
     onBackClick: () -> Unit,
-    onWatchVideoClick: (String) -> Unit
+    onWatchVideoClick: (String) -> Unit,
+    onFavClick: (RecipeItem) -> Unit,
 ) {
-
     Column(
         modifier = Modifier.fillMaxWidth()
             .background(MaterialTheme.colorScheme.background),
@@ -99,7 +107,8 @@ fun DetailScreen(
                 RecipeDetailContent(
                     uiState.recipeDetail,
                     onBackClick = onBackClick,
-                    onWatchVideoClick = onWatchVideoClick
+                    onWatchVideoClick = onWatchVideoClick,
+                    onFavClick = onFavClick
                 )
             }
         }
@@ -139,7 +148,8 @@ fun ErrorScreen(errorMsg: String, onBackClick: () -> Unit) {
 fun RecipeDetailContent(
     recipeItem: RecipeItem,
     onBackClick: () -> Unit,
-    onWatchVideoClick: (String) -> Unit
+    onWatchVideoClick: (String) -> Unit,
+    onFavClick: (RecipeItem) -> Unit,
 ) {
     Box(
         modifier = Modifier.fillMaxWidth()
@@ -180,7 +190,9 @@ fun RecipeDetailContent(
             }
 
             IconButton(
-                onClick = onBackClick,
+                onClick = {
+                    onFavClick(recipeItem)
+                },
                 modifier = Modifier.padding(horizontal = 8.dp).size(30.dp)
                     .background(
                         color = MaterialTheme.colorScheme.background.copy(

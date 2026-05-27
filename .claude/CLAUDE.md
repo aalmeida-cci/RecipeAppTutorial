@@ -10,21 +10,21 @@
 
 ## Tech Stack
 
-| Layer | Library | Version |
-|---|---|---|
-| UI | Compose Multiplatform | 1.10.3 |
-| UI Components | Material 3 | 1.10.0-alpha05 |
-| DI | Koin (Core + Compose + ViewModel) | 4.2.1 |
-| Networking | Ktor (Core + ContentNegotiation + Logging) | 3.4.3 |
-| Serialization | Kotlin Serialization (JSON) | — |
-| Local DB | SQLDelight (Async, Native/Android drivers) | 2.3.2 |
-| Image Loading | Coil 3 + Ktor3 network fetcher | 3.4.0 |
-| Navigation | Jetbrains Navigation Compose | 2.9.2 |
-| Preferences | Multiplatform Settings (russhwolf) | 1.3.0 |
-| Date/Time | kotlinx-datetime | 0.8.0 |
-| Lifecycle | Jetbrains Lifecycle ViewModel Compose | 2.10.0 |
-| Kotlin | 2.3.20 |
-| AGP | 8.11.2 |
+| Layer         | Library                                    | Version        |
+|---------------|--------------------------------------------|----------------|
+| UI            | Compose Multiplatform                      | 1.10.3         |
+| UI Components | Material 3                                 | 1.10.0-alpha05 |
+| DI            | Koin (Core + Compose + ViewModel)          | 4.2.1          |
+| Networking    | Ktor (Core + ContentNegotiation + Logging) | 3.4.3          |
+| Serialization | Kotlin Serialization (JSON)                | —              |
+| Local DB      | SQLDelight (Async, Native/Android drivers) | 2.3.2          |
+| Image Loading | Coil 3 + Ktor3 network fetcher             | 3.4.0          |
+| Navigation    | Jetbrains Navigation Compose               | 2.9.2          |
+| Preferences   | Multiplatform Settings (russhwolf)         | 1.3.0          |
+| Date/Time     | kotlinx-datetime                           | 0.8.0          |
+| Lifecycle     | Jetbrains Lifecycle ViewModel Compose      | 2.10.0         |
+| Kotlin        | 2.3.20                                     |
+| AGP           | 8.11.2                                     |
 
 ---
 
@@ -188,14 +188,14 @@ AppNavHost (root NavController)
 
 ### Route Definitions
 
-| Screen | Route | Notes |
-|---|---|---|
-| Tabs | `"tabs"` | Shell with bottom nav |
-| Home | `"home"` | Tab — feed |
-| Favorites | `"favorites"` | Tab — bookmarked |
-| Profile | `"profile"` | Tab — user profile |
-| Detail | `"detail?recipeId={recipeId}"` | Receives `Long` arg |
-| Search | `"search"` | Top-level |
+| Screen    | Route                          | Notes                 |
+|-----------|--------------------------------|-----------------------|
+| Tabs      | `"tabs"`                       | Shell with bottom nav |
+| Home      | `"home"`                       | Tab — feed            |
+| Favorites | `"favorites"`                  | Tab — bookmarked      |
+| Profile   | `"profile"`                    | Tab — user profile    |
+| Detail    | `"detail?recipeId={recipeId}"` | Receives `Long` arg   |
+| Search    | `"search"`                     | Top-level             |
 
 ---
 
@@ -239,14 +239,14 @@ AppNavHost (root NavController)
 
 ## Source Set Rules
 
-| What | Where |
-|---|---|
-| All Composables, ViewModels, Repositories, UseCases, Domain entities | `commonMain` |
-| Koin setup / `Application` class | `androidMain` |
-| `DatabaseDriverFactory` (Android driver) | `androidMain` |
-| `MainViewController`, `initKoinIOS()` | `iosMain` |
-| `DatabaseDriverFactory` (Native driver) | `iosMain` |
-| Hardware APIs (Camera, Biometrics, Haptics) | `androidMain` / `iosMain` via `expect/actual` |
+| What                                                                 | Where                                         |
+|----------------------------------------------------------------------|-----------------------------------------------|
+| All Composables, ViewModels, Repositories, UseCases, Domain entities | `commonMain`                                  |
+| Koin setup / `Application` class                                     | `androidMain`                                 |
+| `DatabaseDriverFactory` (Android driver)                             | `androidMain`                                 |
+| `MainViewController`, `initKoinIOS()`                                | `iosMain`                                     |
+| `DatabaseDriverFactory` (Native driver)                              | `iosMain`                                     |
+| Hardware APIs (Camera, Biometrics, Haptics)                          | `androidMain` / `iosMain` via `expect/actual` |
 
 **Rule:** If you are writing a Composable and reach for `androidMain` or `iosMain`, stop and reconsider. 99% of UI belongs in `commonMain`.
 

@@ -6,6 +6,10 @@ import com.adrian.recipeapp.features.detail.data.datasources.RecipeDetailRemoteD
 import com.adrian.recipeapp.features.detail.data.datasources.RecipeDetailRemoteDataSourceImpl
 import com.adrian.recipeapp.features.detail.data.repository.RecipeDetailRepositoryImpl
 import com.adrian.recipeapp.features.detail.repositories.RecipeDetailRepository
+import com.adrian.recipeapp.features.favourites.data.datasource.FavouriteRecipeLocalDataSource
+import com.adrian.recipeapp.features.favourites.data.datasource.FavouriteRecipeLocalDataSourceImpl
+import com.adrian.recipeapp.features.favourites.data.repositories.FavouriteRecipeRepository
+import com.adrian.recipeapp.features.favourites.data.repositories.FavouriteRecipeRepositoryImpl
 import com.adrian.recipeapp.features.feed.data.datasource.FeedLocalDataSource
 import com.adrian.recipeapp.features.feed.data.datasource.FeedLocalDataSourceImpl
 import com.adrian.recipeapp.features.feed.data.datasource.FeedRemoteDataSource
@@ -15,12 +19,17 @@ import com.adrian.recipeapp.features.feed.domain.repositories.FeedRepository
 import org.koin.dsl.module
 
 fun dataModule() = module {
+    //Feed
     single<FeedLocalDataSource>  { FeedLocalDataSourceImpl(get()) }
     single<FeedRemoteDataSource>  { FeedRemoteDataSourceImpl(get()) }
     single<FeedRepository> { FeedRepositoryImpl(get(), get()) }
 
-
-    single<RecipeDetailLocalDataSource>  { RecipeDetailLocalDataSourceImpl(get()) }
+    //Recipe detail
+    single<RecipeDetailLocalDataSource>  { RecipeDetailLocalDataSourceImpl(get(), get()) }
     single<RecipeDetailRemoteDataSource>  { RecipeDetailRemoteDataSourceImpl(get()) }
     single<RecipeDetailRepository> { RecipeDetailRepositoryImpl(get(), get()) }
+
+    //Favourite recipe
+    single<FavouriteRecipeLocalDataSource> { FavouriteRecipeLocalDataSourceImpl(get()) }
+    single<FavouriteRecipeRepository> { FavouriteRecipeRepositoryImpl(get()) }
 }

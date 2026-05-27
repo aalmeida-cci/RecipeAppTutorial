@@ -35,7 +35,8 @@ fun AppNavHost(
             tabNavController = tabNavController,
             navigateToDetail = {
                 appState.navigateToDetail(it)
-            }
+            },
+            navigateToSearch = appState::navigateToSearch
         )
         searchNavGraph()
         detailNavGraph(onBackClick = appState::navigateBack)
