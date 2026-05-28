@@ -28,7 +28,8 @@ fun SplashRoute(onSplashComplete: () -> Unit) {
 @Composable
 fun SplashScreen(modifier: Modifier = Modifier) {
     Box(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center

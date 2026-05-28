@@ -56,22 +56,20 @@ fun FavouritesRoute(
 
     FavouritesScreen(
         uiState = uiState.value,
-        navigateToDetail = navigateToDetail,
+        navigateToDetail = navigateToDetail
     )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FavouritesScreen(
-    uiState: FavouriteScreenUiState,
-    navigateToDetail: (Long) -> Unit,
-) {
+fun FavouritesScreen(uiState: FavouriteScreenUiState, navigateToDetail: (Long) -> Unit) {
     val recipes = uiState.itemsList
     Scaffold(
         modifier = Modifier.systemBarsPadding(),
         topBar = {
             TopAppBar(
-                colors = TopAppBarDefaults.topAppBarColors().copy(
+                colors =
+                TopAppBarDefaults.topAppBarColors().copy(
                     containerColor = MaterialTheme.colorScheme.background
                 ),
                 title = {
@@ -86,7 +84,8 @@ fun FavouritesScreen(
         ) {
             HorizontalDivider(
                 thickness = 0.3.dp,
-                color = MaterialTheme.colorScheme.outline.copy(
+                color =
+                MaterialTheme.colorScheme.outline.copy(
                     alpha = 0.5f
                 )
             )
@@ -116,7 +115,7 @@ fun FavouritesScreen(
 private fun FavouriteContent(
     innerPadding: PaddingValues,
     recipes: List<RecipeItem>,
-    navigateToDetail: (Long) -> Unit,
+    navigateToDetail: (Long) -> Unit
 ) {
 //    val imageModifier = Modifier.fillMaxWidth()
 //        .width(140.dp)
@@ -124,7 +123,6 @@ private fun FavouriteContent(
 //        .clip(RoundedCornerShape(16.dp))
     val imageModifier =
         Modifier.width(140.dp).height(80.dp).clip(RoundedCornerShape(16.dp))
-
 
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
@@ -137,7 +135,6 @@ private fun FavouriteContent(
                 navigateToDetail = navigateToDetail
             )
         }
-
     }
 }
 
@@ -146,23 +143,23 @@ private fun FavouriteRecipeCard(
     recipe: RecipeItem,
     modifier: Modifier = Modifier,
     imageModifier: Modifier,
-    navigateToDetail: (Long) -> Unit,
+    navigateToDetail: (Long) -> Unit
 ) {
     Card(
-        colors = CardDefaults.cardColors().copy(
+        colors =
+        CardDefaults.cardColors().copy(
             containerColor = MaterialTheme.colorScheme.onPrimary
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
-        modifier = modifier.clickable {
+        modifier =
+        modifier.clickable {
             navigateToDetail(recipe.id)
         }
     ) {
-
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             modifier = Modifier.padding(16.dp)
         ) {
-
             AsyncImage(
                 model = recipe.imageUrl,
                 onError = {
@@ -180,7 +177,8 @@ private fun FavouriteRecipeCard(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
-                    style = MaterialTheme.typography.bodyMedium.copy(
+                    style =
+                    MaterialTheme.typography.bodyMedium.copy(
                         fontWeight = FontWeight.Medium
                     )
                 )
@@ -188,7 +186,6 @@ private fun FavouriteRecipeCard(
                 Row(
                     modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
                 ) {
-
                     Row(
                         modifier = Modifier.padding(end = 4.dp),
                         verticalAlignment = Alignment.CenterVertically
@@ -217,13 +214,11 @@ private fun FavouriteRecipeCard(
                         Text(
                             text = " ${recipe.rating}",
                             style = MaterialTheme.typography.bodySmall,
-                            modifier = Modifier.padding(start = 4.dp),
+                            modifier = Modifier.padding(start = 4.dp)
                         )
                     }
                 }
             }
         }
-
     }
-
 }

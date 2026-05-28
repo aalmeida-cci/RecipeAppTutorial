@@ -10,7 +10,7 @@ import io.ktor.client.request.get
 
 class FeedRemoteDataSourceImpl(
     private val httpClient: HttpClient
-): FeedRemoteDataSource {
+) : FeedRemoteDataSource {
     override suspend fun getRecipesList(): List<RecipeItem> {
         val httpResponse = httpClient.get("${BASE_URL}search.php?f=b")
         val recipeListApiResponse = httpResponse.body<RecipeListApiResponse>()

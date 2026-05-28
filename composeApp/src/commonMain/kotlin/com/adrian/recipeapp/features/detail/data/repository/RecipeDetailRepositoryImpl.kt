@@ -8,7 +8,7 @@ import com.adrian.recipeapp.features.detail.repositories.RecipeDetailRepository
 class RecipeDetailRepositoryImpl(
     private val recipeDetailLocalDataSource: RecipeDetailLocalDataSource,
     private val recipeDetailRemoteDataSource: RecipeDetailRemoteDataSource
-): RecipeDetailRepository {
+) : RecipeDetailRepository {
     override suspend fun getRecipesDetail(id: Long): Result<RecipeItem> {
         return try {
             val recipeDetailFromDb = recipeDetailLocalDataSource.getRecipeDetail(id = id)
@@ -16,12 +16,15 @@ class RecipeDetailRepositoryImpl(
             return if (recipeDetailFromDb != null) {
                 val isFav = recipeDetailLocalDataSource.isFavourite(recipeId = id)
                 print("RecipeDetailRepository -> Recipe -> isFav: $isFav")
-                Result.success(recipeDetailFromDb.copy(
-                    isFavorite = isFav
-                ))
+                Result.success(
+                    recipeDetailFromDb.copy(
+                        isFavorite = isFav
+                    )
+                )
             } else {
                 val recipeDetailApiResponse =
-                    recipeDetailRemoteDataSource.getRecipeDetail(id = id) ?: return Result.failure(Exception("Recipe not found"))
+                    recipeDetailRemoteDataSource.getRecipeDetail(id = id)
+                        ?: return Result.failure(Exception("Recipe not found"))
                 recipeDetailLocalDataSource.saveRecipe(recipeDetailApiResponse)
                 Result.success(recipeDetailApiResponse)
             }

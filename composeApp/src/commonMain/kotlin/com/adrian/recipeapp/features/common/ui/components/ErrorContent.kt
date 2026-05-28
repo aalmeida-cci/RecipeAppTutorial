@@ -18,7 +18,8 @@ fun ErrorContent() {
     ) {
         Text(
             "Error in loading Items",
-            style = MaterialTheme.typography.bodyLarge.copy(
+            style =
+            MaterialTheme.typography.bodyLarge.copy(
                 color = MaterialTheme.colorScheme.error
             )
         )

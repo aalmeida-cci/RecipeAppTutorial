@@ -117,7 +117,7 @@ data class RecipeApiItem(
 )
 
 fun RecipeApiItem.toRecipe(): RecipeItem? {
-    return if (idMeal != null)
+    return if (idMeal != null) {
         RecipeItem(
             id = idMeal.toLong(),
             title = strMeal ?: "",
@@ -126,7 +126,8 @@ fun RecipeApiItem.toRecipe(): RecipeItem? {
             area = strArea ?: "",
             imageUrl = strMealThumb ?: "",
             youtubeLink = strYoutube ?: "",
-            ingredients = listOfNotNull(
+            ingredients =
+            listOfNotNull(
                 "$strIngredient1:$strMeasure1",
                 "$strIngredient2:$strMeasure2",
                 "$strIngredient3:$strMeasure3",
@@ -140,14 +141,18 @@ fun RecipeApiItem.toRecipe(): RecipeItem? {
                 "$strIngredient11:$strMeasure11",
                 "$strIngredient12:$strMeasure12",
                 "$strIngredient13:$strMeasure13",
-                "$strIngredient14:$strMeasure14",
+                "$strIngredient14:$strMeasure14"
             ),
-            instructions = strInstructions?.split(".")?.map {
+            instructions =
+            strInstructions?.split(".")?.map {
                 it.trim().replace("\r\n", "").capitalizeFirstWord()
             }?.filter { it.isNotEmpty() } ?: emptyList(),
             isFavorite = false,
             rating = 3
-        ) else null
+        )
+    } else {
+        null
+    }
 }
 
 fun String.capitalizeFirstWord() = this.replaceFirstChar { it.uppercase() }

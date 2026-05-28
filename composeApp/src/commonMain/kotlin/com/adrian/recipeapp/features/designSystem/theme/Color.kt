@@ -216,10 +216,3 @@ val surfaceContainerLowDarkHighContrast = Color(0xFF261E19)
 val surfaceContainerDarkHighContrast = Color(0xFF382E29)
 val surfaceContainerHighDarkHighContrast = Color(0xFF443934)
 val surfaceContainerHighestDarkHighContrast = Color(0xFF4F453F)
-
-
-
-
-
-
-

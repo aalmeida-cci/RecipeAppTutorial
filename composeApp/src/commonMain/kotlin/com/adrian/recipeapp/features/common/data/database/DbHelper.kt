@@ -23,7 +23,8 @@ class DbHelper(
     private suspend fun createDb(driverFactory: DatabaseDriverFactory): RecipeAppDatabase {
         return RecipeAppDatabase(
             driver = driverFactory.createDriver(),
-            RecipeAdapter = com.adrian.recipeapp.db.Recipe.Adapter(
+            RecipeAdapter =
+            com.adrian.recipeapp.db.Recipe.Adapter(
                 ingredientsAdapter = listOfStringsAdapter,
                 instructionsAdapter = listOfStringsAdapter
             )

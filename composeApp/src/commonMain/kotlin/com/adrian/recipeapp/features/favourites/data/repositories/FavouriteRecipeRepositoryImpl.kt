@@ -2,11 +2,10 @@ package com.adrian.recipeapp.features.favourites.data.repositories
 
 import com.adrian.recipeapp.features.common.domain.entities.RecipeItem
 import com.adrian.recipeapp.features.favourites.data.datasource.FavouriteRecipeLocalDataSource
-import com.adrian.recipeapp.features.favourites.data.repositories.FavouriteRecipeRepository
 
 class FavouriteRecipeRepositoryImpl(
     private val favouriteRecipeLocalDataSource: FavouriteRecipeLocalDataSource
-): FavouriteRecipeRepository {
+) : FavouriteRecipeRepository {
     override suspend fun getALlFavouriteRecipe(): Result<List<RecipeItem>> {
         return try {
             val list = favouriteRecipeLocalDataSource.getAllFavouriteRecipes()
@@ -21,7 +20,6 @@ class FavouriteRecipeRepositoryImpl(
     }
 
     override suspend fun removeFavourite(recipeId: Long) {
-       favouriteRecipeLocalDataSource.removeFavourite(recipeId)
+        favouriteRecipeLocalDataSource.removeFavourite(recipeId)
     }
-
 }

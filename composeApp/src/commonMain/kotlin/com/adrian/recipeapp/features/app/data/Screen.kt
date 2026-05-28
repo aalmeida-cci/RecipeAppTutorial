@@ -18,32 +18,36 @@ import recipeapp.composeapp.generated.resources.search
 import recipeapp.composeapp.generated.resources.splash
 import recipeapp.composeapp.generated.resources.tabs
 
-
 sealed class Screen(
     val route: String,
     val resourceId: StringResource,
     val selectedIcon: DrawableResource? = null,
-    val unselectedIcon: DrawableResource? = null,
+    val unselectedIcon: DrawableResource? = null
 ) {
-
     data object Splash : Screen("splash", Res.string.splash)
+
     data object Search : Screen("search", Res.string.search)
+
     data object Tabs : Screen("tabs", Res.string.tabs)
+
     data object Detail : Screen("detail?$RECIPE_ID_ARG={$RECIPE_ID_ARG}", Res.string.detail)
 
-    data object Home : Screen("home",
+    data object Home : Screen(
+        "home",
         Res.string.home,
         selectedIcon = Res.drawable.home_selected,
         unselectedIcon = Res.drawable.home_unselected
     )
 
-    data object Favorites : Screen("favorites",
+    data object Favorites : Screen(
+        "favorites",
         Res.string.favourites,
         selectedIcon = Res.drawable.bookmark_selected,
         unselectedIcon = Res.drawable.bookmark_unselected
     )
 
-    data object Profile : Screen("profile",
+    data object Profile : Screen(
+        "profile",
         Res.string.profile,
         selectedIcon = Res.drawable.profile_selected,
         unselectedIcon = Res.drawable.profile_unselected

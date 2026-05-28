@@ -5,11 +5,10 @@ import com.adrian.recipeapp.features.feed.data.datasource.FeedLocalDataSource
 import com.adrian.recipeapp.features.feed.data.datasource.FeedRemoteDataSource
 import com.adrian.recipeapp.features.feed.domain.repositories.FeedRepository
 
-class FeedRepositoryImpl (
+class FeedRepositoryImpl(
     private val feedLocalDataSource: FeedLocalDataSource,
-    private val feedRemoteDataSource: FeedRemoteDataSource,
-): FeedRepository {
-
+    private val feedRemoteDataSource: FeedRemoteDataSource
+) : FeedRepository {
     override suspend fun getRecipesList(): Result<List<RecipeItem>> {
         return try {
             val recipeListCache = feedLocalDataSource.getRecipesList()

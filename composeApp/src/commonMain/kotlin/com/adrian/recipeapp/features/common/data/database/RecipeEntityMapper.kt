@@ -3,7 +3,7 @@ package com.adrian.recipeapp.features.common.data.database
 import com.adrian.recipeapp.db.Recipe
 import com.adrian.recipeapp.features.common.domain.entities.RecipeItem
 
-fun recipeEntityMapper(recipe: Recipe)  = RecipeItem(
+fun recipeEntityMapper(recipe: Recipe) = RecipeItem(
     recipe.id,
     recipe.title,
     recipe.description,

@@ -11,14 +11,11 @@ fun NavController.navigateToFeed(navOptions: NavOptions? = null) {
     navigate(Screen.Home.route)
 }
 
-fun NavGraphBuilder.feedNavGraph(
-    navigateToSearch: () -> Unit,
-    navigateToDetail: (Long) -> Unit
-) {
+fun NavGraphBuilder.feedNavGraph(navigateToSearch: () -> Unit, navigateToDetail: (Long) -> Unit) {
     composable(Screen.Home.route) {
         FeedRoute(
             navigateToSearch = navigateToSearch,
-            navigateToDetail = navigateToDetail,
+            navigateToDetail = navigateToDetail
         )
     }
 }

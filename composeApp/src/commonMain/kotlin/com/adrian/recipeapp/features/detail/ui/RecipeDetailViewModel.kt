@@ -2,17 +2,14 @@ package com.adrian.recipeapp.features.detail.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.adrian.recipeapp.features.detail.repositories.RecipeDetailRepository
-import com.adrian.recipeapp.features.favourites.data.repositories.FavouriteRecipeRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class RecipeDetailViewModel(
-    private val recipeDetailRepository: RecipeDetailRepository,
+    private val recipeDetailRepository: RecipeDetailRepository
 ) : ViewModel() {
-
     private var _detailUiState = MutableStateFlow(RecipeDetailUiState())
     val detailUiState = _detailUiState.asStateFlow()
 
@@ -23,15 +20,17 @@ class RecipeDetailViewModel(
         viewModelScope.launch {
             val recipeDetailRes = recipeDetailRepository.getRecipesDetail(id)
             if (recipeDetailRes.isSuccess) {
-                _detailUiState.value = detailUiState.value.copy(
-                    recipeDetail = recipeDetailRes.getOrNull(),
-                    recipesDetailIsLoading = false
-                )
+                _detailUiState.value =
+                    detailUiState.value.copy(
+                        recipeDetail = recipeDetailRes.getOrNull(),
+                        recipesDetailIsLoading = false
+                    )
             } else {
-                _detailUiState.value = detailUiState.value.copy(
-                    recipesDetailError = recipeDetailRes.exceptionOrNull()?.message,
-                    recipesDetailIsLoading = false
-                )
+                _detailUiState.value =
+                    detailUiState.value.copy(
+                        recipesDetailError = recipeDetailRes.exceptionOrNull()?.message,
+                        recipesDetailIsLoading = false
+                    )
             }
         }
     }
@@ -39,9 +38,10 @@ class RecipeDetailViewModel(
     fun updateFavourite(recipeId: Long, isAddFavourite: Boolean) {
         viewModelScope.launch {
             try {
-                _updateFavUiState.value = _updateFavUiState.value.copy(
-                    isUpdatingFav = true
-                )
+                _updateFavUiState.value =
+                    _updateFavUiState.value.copy(
+                        isUpdatingFav = true
+                    )
 
                 if (isAddFavourite) {
                     recipeDetailRepository.addFavourite(recipeId)
@@ -49,22 +49,26 @@ class RecipeDetailViewModel(
                     recipeDetailRepository.removeFavourite(recipeId)
                 }
 
-                //refresh details
-                _detailUiState.value = _detailUiState.value.copy(
-                    recipeDetail = _detailUiState.value.recipeDetail?.copy(
-                        isFavorite = isAddFavourite,
+                // refresh details
+                _detailUiState.value =
+                    _detailUiState.value.copy(
+                        recipeDetail =
+                        _detailUiState.value.recipeDetail?.copy(
+                            isFavorite = isAddFavourite
+                        )
                     )
-                )
-                _updateFavUiState.value = _updateFavUiState.value.copy(
-                    isSuccessResult = true,
-                    isUpdatingFav = false,
-                )
+                _updateFavUiState.value =
+                    _updateFavUiState.value.copy(
+                        isSuccessResult = true,
+                        isUpdatingFav = false
+                    )
             } catch (e: Exception) {
                 println("updateFavourite failed: ${e.message}")
-                _updateFavUiState.value = _updateFavUiState.value.copy(
-                    errorMsg = e.message,
-                    isUpdatingFav = false,
-                )
+                _updateFavUiState.value =
+                    _updateFavUiState.value.copy(
+                        errorMsg = e.message,
+                        isUpdatingFav = false
+                    )
             }
         }
     }

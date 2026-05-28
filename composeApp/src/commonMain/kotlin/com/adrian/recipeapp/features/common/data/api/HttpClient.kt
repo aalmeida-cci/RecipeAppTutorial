@@ -11,23 +11,26 @@ import kotlinx.serialization.json.Json
 
 const val BASE_URL = "https://www.themealdb.com/api/json/v1/1/"
 
-val httpClient = HttpClient {
-    install(ContentNegotiation) {
-        json(
-            Json {
-                prettyPrint = true
-                isLenient = true
-                ignoreUnknownKeys = true
-            }
-        )
-    }
+val httpClient =
+    HttpClient {
+        install(ContentNegotiation) {
+            json(
+                Json {
+                    prettyPrint = true
+                    isLenient = true
+                    ignoreUnknownKeys = true
+                }
+            )
+        }
 
-    install(Logging) {
-        logger = Logger.DEFAULT
-        level = LogLevel.ALL
-        //Hide authorization from
-        /*sanitizeHeader { header ->
-            header == HttpHeaders.Authorization
-        }*/
+        install(Logging) {
+            logger = Logger.DEFAULT
+            level = LogLevel.ALL
+
+            /*
+            sanitizeHeader { header ->
+                header == HttpHeaders.Authorization
+            }
+             */
+        }
     }
-}

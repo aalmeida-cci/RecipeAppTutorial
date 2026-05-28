@@ -23,21 +23,21 @@ import com.adrian.recipeapp.features.search.domain.repositories.SearchRepository
 import org.koin.dsl.module
 
 fun dataModule() = module {
-    //Feed
-    single<FeedLocalDataSource>  { FeedLocalDataSourceImpl(get()) }
-    single<FeedRemoteDataSource>  { FeedRemoteDataSourceImpl(get()) }
+    // Feed
+    single<FeedLocalDataSource> { FeedLocalDataSourceImpl(get()) }
+    single<FeedRemoteDataSource> { FeedRemoteDataSourceImpl(get()) }
     single<FeedRepository> { FeedRepositoryImpl(get(), get()) }
 
-    //Recipe detail
-    single<RecipeDetailLocalDataSource>  { RecipeDetailLocalDataSourceImpl(get(), get()) }
-    single<RecipeDetailRemoteDataSource>  { RecipeDetailRemoteDataSourceImpl(get()) }
+    // Recipe detail
+    single<RecipeDetailLocalDataSource> { RecipeDetailLocalDataSourceImpl(get(), get()) }
+    single<RecipeDetailRemoteDataSource> { RecipeDetailRemoteDataSourceImpl(get()) }
     single<RecipeDetailRepository> { RecipeDetailRepositoryImpl(get(), get()) }
 
-    //Favourite recipe
+    // Favourite recipe
     single<FavouriteRecipeLocalDataSource> { FavouriteRecipeLocalDataSourceImpl(get()) }
     single<FavouriteRecipeRepository> { FavouriteRecipeRepositoryImpl(get()) }
 
-    //Search
+    // Search
     single<SearchLocalDataSource> { SearchLocalDataSourceImpl(get()) }
     single<SearchRepository> { SearchRepositoryImpl(get()) }
 }

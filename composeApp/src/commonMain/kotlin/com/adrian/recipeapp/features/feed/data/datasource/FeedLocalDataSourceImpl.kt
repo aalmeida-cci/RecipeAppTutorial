@@ -5,7 +5,7 @@ import com.adrian.recipeapp.features.common.domain.entities.RecipeItem
 
 class FeedLocalDataSourceImpl(
     private val recipeDao: RecipeDao
-): FeedLocalDataSource {
+) : FeedLocalDataSource {
     override suspend fun getRecipesList(): List<RecipeItem> {
         return recipeDao.getAllRecipes()
     }

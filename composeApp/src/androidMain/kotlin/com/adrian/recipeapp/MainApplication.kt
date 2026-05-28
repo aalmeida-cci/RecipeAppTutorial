@@ -6,11 +6,11 @@ import com.adrian.recipeapp.di.initKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
-class MainApplication: Application() {
-
-    private val androidModules = module {
-        single{ DatabaseDriverFactory(applicationContext) }
-    }
+class MainApplication : Application() {
+    private val androidModules =
+        module {
+            single { DatabaseDriverFactory(applicationContext) }
+        }
 
     override fun onCreate() {
         super.onCreate()

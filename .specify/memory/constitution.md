@@ -13,6 +13,18 @@ Templates requiring updates:
   - .specify/templates/spec-template.md ⚠ pending manual review
   - .specify/templates/tasks-template.md ⚠ pending manual review
 Deferred TODOs: None
+
+---
+
+Amendment 1.0.1 — 2026-05-28
+Added "UI-Only Feature Exception" to Principles I and V.
+Rationale: features with no data to fetch, persist, or map (hardcoded/in-memory UI state only)
+must not be forced to create empty Repository, DataSource, and domain/ package scaffolding.
+Empty abstractions violate Principle IV (Code Reuse — No Duplication) and the project's
+"no half-finished implementations" guideline. The exception is bounded and triggers a mandatory
+follow-up obligation when real data integration arrives.
+Affected principles: I, V.
+Templates requiring updates: none (exception is conditional, not a structural change).
 -->
 
 # RecipeApp Constitution
@@ -30,6 +42,11 @@ No layer may import or depend on a layer above it.
 - Repository layer: interface in `domain/repositories/`, implementation in `data/repositories/`. All methods return `kotlin.Result<T>` — exceptions MUST NOT cross the repository boundary.
 - DataSource layer: `LocalDataSource` (SQLDelight via `RecipeDao`) + `RemoteDataSource` (Ktor).
 - Domain/Entity layer: pure Kotlin data classes — zero Android, Compose, Ktor, or SQLDelight imports.
+
+**UI-Only Feature Exception**: A feature that has no data to fetch, persist, or map (all state is in-memory / hardcoded as a UI placeholder) MAY omit the Repository, DataSource, and Domain layers. Conditions:
+1. The feature spec explicitly documents that all state is hardcoded/in-memory (not from a remote or local source).
+2. The plan's Complexity Tracking section records the deviation and its justification.
+3. A follow-up obligation is documented: when real data integration arrives, the missing layers MUST be introduced in a dedicated feature branch following the full five-layer structure.
 
 ### II. Kotlin Multiplatform — commonMain First
 
@@ -82,6 +99,8 @@ Every new feature MUST follow this exact layout under `commonMain/kotlin/com/adr
 ```
 
 Deviation from this layout requires explicit justification and constitution amendment.
+
+**UI-Only Feature Exception**: When Principle I's UI-Only Feature Exception applies, the `domain/` and `data/` packages MAY be omitted. Only `navigation/` and `ui/` are required. The same three conditions from Principle I apply (documented spec, Complexity Tracking entry, follow-up obligation).
 
 ## Architecture & Source Set Constraints
 
@@ -141,4 +160,4 @@ This constitution supersedes all other coding guidelines, README snippets, or ve
 
 **Runtime guidance:** Refer to `.specify/memory/architecture/architecture.md` for canonical layer diagrams, data-flow examples, and Koin module graph details.
 
-**Version**: 1.0.0 | **Ratified**: 2026-05-25 | **Last Amended**: 2026-05-25
+**Version**: 1.0.1 | **Ratified**: 2026-05-25 | **Last Amended**: 2026-05-28
