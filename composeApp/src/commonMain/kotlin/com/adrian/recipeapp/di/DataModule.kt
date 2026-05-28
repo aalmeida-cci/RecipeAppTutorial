@@ -16,6 +16,10 @@ import com.adrian.recipeapp.features.feed.data.datasource.FeedRemoteDataSource
 import com.adrian.recipeapp.features.feed.data.datasource.FeedRemoteDataSourceImpl
 import com.adrian.recipeapp.features.feed.data.repositories.FeedRepositoryImpl
 import com.adrian.recipeapp.features.feed.domain.repositories.FeedRepository
+import com.adrian.recipeapp.features.search.data.datasources.SearchLocalDataSource
+import com.adrian.recipeapp.features.search.data.datasources.SearchLocalDataSourceImpl
+import com.adrian.recipeapp.features.search.data.repositories.SearchRepositoryImpl
+import com.adrian.recipeapp.features.search.domain.repositories.SearchRepository
 import org.koin.dsl.module
 
 fun dataModule() = module {
@@ -32,4 +36,8 @@ fun dataModule() = module {
     //Favourite recipe
     single<FavouriteRecipeLocalDataSource> { FavouriteRecipeLocalDataSourceImpl(get()) }
     single<FavouriteRecipeRepository> { FavouriteRecipeRepositoryImpl(get()) }
+
+    //Search
+    single<SearchLocalDataSource> { SearchLocalDataSourceImpl(get()) }
+    single<SearchRepository> { SearchRepositoryImpl(get()) }
 }

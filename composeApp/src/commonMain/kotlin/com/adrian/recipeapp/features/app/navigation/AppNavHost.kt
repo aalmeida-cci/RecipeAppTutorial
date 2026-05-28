@@ -38,7 +38,10 @@ fun AppNavHost(
             },
             navigateToSearch = appState::navigateToSearch
         )
-        searchNavGraph()
+        searchNavGraph(
+            navigateBack = appState::navigateBack,
+            navigateToDetail = appState::navigateToDetail,
+        )
         detailNavGraph(onBackClick = appState::navigateBack)
     }
 }
