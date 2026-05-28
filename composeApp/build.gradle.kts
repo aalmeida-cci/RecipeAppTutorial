@@ -128,21 +128,6 @@ ktlint {
     }
 }
 
-tasks.withType<org.jlleitschuh.gradle.ktlint.tasks.KtLintCheckTask>().configureEach {
-    setSource(
-        layout.projectDirectory.dir("src").asFileTree.matching {
-            include("**/*.kt", "**/*.kts")
-        }
-    )
-}
-tasks.withType<org.jlleitschuh.gradle.ktlint.tasks.KtLintFormatTask>().configureEach {
-    setSource(
-        layout.projectDirectory.dir("src").asFileTree.matching {
-            include("**/*.kt", "**/*.kts")
-        }
-    )
-}
-
 sqldelight {
     databases {
         create(name = "RecipeAppDatabase") {
