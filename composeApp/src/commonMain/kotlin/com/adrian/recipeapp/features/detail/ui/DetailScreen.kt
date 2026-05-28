@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -39,14 +38,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.util.floatFromBits
 import coil3.compose.AsyncImage
 import com.adrian.recipeapp.features.common.data.models.capitalizeFirstWord
 import com.adrian.recipeapp.features.common.domain.entities.RecipeItem
@@ -78,7 +73,7 @@ fun DetailRoute(
         favUiState.value,
         onBackClick = onBackClick,
         onWatchVideoClick = onWatchVideoClick,
-        onFavClick = onFavClick,
+        onFavClick = onFavClick
     )
 }
 
@@ -88,11 +83,12 @@ fun DetailScreen(
     favUiState: RecipeDetailUpdateFavUiState,
     onBackClick: () -> Unit,
     onWatchVideoClick: (String) -> Unit,
-    onFavClick: (RecipeItem) -> Unit,
+    onFavClick: (RecipeItem) -> Unit
 ) {
     Column(
-        modifier = Modifier.fillMaxWidth()
-            .background(MaterialTheme.colorScheme.background),
+        modifier =
+        Modifier.fillMaxWidth()
+            .background(MaterialTheme.colorScheme.background)
     ) {
         when {
             uiState.recipesDetailIsLoading -> {
@@ -135,7 +131,7 @@ fun ErrorScreen(errorMsg: String, onBackClick: () -> Unit) {
         Text(
             text = errorMsg,
             color = MaterialTheme.colorScheme.error,
-            style = MaterialTheme.typography.headlineSmall,
+            style = MaterialTheme.typography.headlineSmall
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = onBackClick) {
@@ -149,7 +145,7 @@ fun RecipeDetailContent(
     recipeItem: RecipeItem,
     onBackClick: () -> Unit,
     onWatchVideoClick: (String) -> Unit,
-    onFavClick: (RecipeItem) -> Unit,
+    onFavClick: (RecipeItem) -> Unit
 ) {
     Box(
         modifier = Modifier.fillMaxWidth()
@@ -159,24 +155,27 @@ fun RecipeDetailContent(
             onWatchVideoClick = onWatchVideoClick
         )
 
-        //Back and Save Button UI
+        // Back and Save Button UI
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth().padding(WindowInsets.statusBars.asPaddingValues())
+            modifier =
+            Modifier.fillMaxWidth().padding(WindowInsets.statusBars.asPaddingValues())
                 .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
                 /*.padding(
                     vertical = 32.dp,
                     horizontal = 16.dp
                 )*/
                 .align(
-                    Alignment.TopCenter,
+                    Alignment.TopCenter
                 )
         ) {
             IconButton(
                 onClick = onBackClick,
-                modifier = Modifier.padding(horizontal = 8.dp).size(30.dp)
+                modifier =
+                Modifier.padding(horizontal = 8.dp).size(30.dp)
                     .background(
-                        color = MaterialTheme.colorScheme.background.copy(
+                        color =
+                        MaterialTheme.colorScheme.background.copy(
                             alpha = 0.8f
                         ),
                         shape = CircleShape
@@ -193,9 +192,11 @@ fun RecipeDetailContent(
                 onClick = {
                     onFavClick(recipeItem)
                 },
-                modifier = Modifier.padding(horizontal = 8.dp).size(30.dp)
+                modifier =
+                Modifier.padding(horizontal = 8.dp).size(30.dp)
                     .background(
-                        color = MaterialTheme.colorScheme.background.copy(
+                        color =
+                        MaterialTheme.colorScheme.background.copy(
                             alpha = 0.8f
                         ),
                         shape = CircleShape
@@ -203,8 +204,11 @@ fun RecipeDetailContent(
             ) {
                 Icon(
                     imageVector =
-                        if (recipeItem.isFavorite) Icons.Default.Bookmark
-                        else Icons.Default.BookmarkBorder,
+                    if (recipeItem.isFavorite) {
+                        Icons.Default.Bookmark
+                    } else {
+                        Icons.Default.BookmarkBorder
+                    },
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.onBackground
                 )
@@ -214,19 +218,18 @@ fun RecipeDetailContent(
 }
 
 @Composable
-fun RecipeMainContent(
-    recipeItem: RecipeItem,
-    onWatchVideoClick: (String) -> Unit
-) {
+fun RecipeMainContent(recipeItem: RecipeItem, onWatchVideoClick: (String) -> Unit) {
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier =
+        Modifier.fillMaxWidth()
             .verticalScroll(rememberScrollState())
     ) {
         AsyncImage(
             model = recipeItem.imageUrl,
             contentDescription = recipeItem.title,
             contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxWidth().height(250.dp).clip(
+            modifier =
+            Modifier.fillMaxWidth().height(250.dp).clip(
                 RoundedCornerShape(
                     bottomStart = 16.dp,
                     bottomEnd = 16.dp
@@ -234,28 +237,30 @@ fun RecipeMainContent(
             )
         )
 
-        //Other Details
+        // Other Details
         RecipeDetails(recipeItem = recipeItem)
 
-        //Desc
+        // Desc
         Column(
             modifier = Modifier.padding(horizontal = 16.dp).padding(bottom = 16.dp)
         ) {
             Text(
                 "Description",
-                style = MaterialTheme.typography.titleMedium.copy(
+                style =
+                MaterialTheme.typography.titleMedium.copy(
                     fontWeight = FontWeight.Bold
-                ),
+                )
             )
             Text(
                 recipeItem.description,
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodySmall
             )
         }
 
-        //Ingredients items
+        // Ingredients items
         IngredientsList(
-            ingredients = recipeItem.ingredients.map {
+            ingredients =
+            recipeItem.ingredients.map {
                 val item = it.split(":")
                 if (item.isNotEmpty() && item.size == 2) {
                     Pair(item[0].trim().capitalizeFirstWord(), item[1].trim())
@@ -269,20 +274,18 @@ fun RecipeMainContent(
             }
         )
 
-        //Instructions
+        // Instructions
         Instructions(instructions = recipeItem.instructions)
 
         WatchVideoBtn(
             youTubeLink = recipeItem.youtubeLink,
-            onWatchVideoClick = onWatchVideoClick,
+            onWatchVideoClick = onWatchVideoClick
         )
     }
 }
 
 @Composable
-fun RecipeDetails(
-    recipeItem: RecipeItem
-) {
+fun RecipeDetails(recipeItem: RecipeItem) {
     Column(modifier = Modifier.padding(16.dp)) {
         Text(
             text = recipeItem.title,
@@ -308,7 +311,8 @@ fun RecipeDetails(
                 imageVector = Icons.Default.Star,
                 contentDescription = null,
                 modifier = Modifier.size(16.dp),
-                tint = MaterialTheme.colorScheme.primaryContainer.copy(
+                tint =
+                MaterialTheme.colorScheme.primaryContainer.copy(
                     alpha = 0.5f
                 )
             )
@@ -329,35 +333,31 @@ fun RecipeDetails(
 }
 
 @Composable
-fun IngredientsList(
-    ingredients: List<Pair<String, String>>
-) {
+fun IngredientsList(ingredients: List<Pair<String, String>>) {
     Column(
         modifier = Modifier.padding(horizontal = 16.dp)
     ) {
         Text(
             "Ingredients",
-            style = MaterialTheme.typography.titleMedium.copy(
+            style =
+            MaterialTheme.typography.titleMedium.copy(
                 fontWeight = FontWeight.Bold
-            ),
+            )
         )
         ingredients.forEach {
             IngredientsItem(
                 name = it.first,
-                quantity = it.second,
+                quantity = it.second
             )
         }
     }
 }
 
 @Composable
-fun IngredientsItem(
-    name: String,
-    quantity: String,
-) {
+fun IngredientsItem(name: String, quantity: String) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(text = name, style = MaterialTheme.typography.bodySmall)
         Text(text = quantity, style = MaterialTheme.typography.bodySmall)
@@ -365,37 +365,34 @@ fun IngredientsItem(
 }
 
 @Composable
-fun Instructions(
-    instructions: List<String>
-) {
+fun Instructions(instructions: List<String>) {
     Column(modifier = Modifier.padding(horizontal = 16.dp)) {
         Text(
             text = "Instructions",
-            style = MaterialTheme.typography.titleMedium.copy(
+            style =
+            MaterialTheme.typography.titleMedium.copy(
                 fontWeight = FontWeight.Bold
-            ),
+            )
         )
         instructions.forEachIndexed { index, value ->
             Text(
                 text = "${index + 1} $value",
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodySmall
             )
         }
     }
 }
 
 @Composable
-fun WatchVideoBtn(
-    youTubeLink: String,
-    onWatchVideoClick: (String) -> Unit
-) {
+fun WatchVideoBtn(youTubeLink: String, onWatchVideoClick: (String) -> Unit) {
     Button(
         onClick = {
             onWatchVideoClick(youTubeLink)
         },
-        colors = ButtonDefaults.buttonColors(
+        colors =
+        ButtonDefaults.buttonColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
         ),
         modifier = Modifier.padding(16.dp).fillMaxWidth()
     ) {
@@ -406,8 +403,10 @@ fun WatchVideoBtn(
         )
         Spacer(modifier = Modifier.width(16.dp))
         Text(
-            "Watch Video", style = MaterialTheme.typography.bodyMedium.copy(
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
+            "Watch Video",
+            style =
+            MaterialTheme.typography.bodyMedium.copy(
+                color = MaterialTheme.colorScheme.onPrimaryContainer
             )
         )
     }

@@ -1,8 +1,5 @@
 package com.adrian.recipeapp.features.tabs.ui
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
@@ -14,7 +11,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -30,22 +26,23 @@ import com.adrian.recipeapp.features.profile.navigation.profileNavGraph
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
-val tabItems = listOf(
-    Screen.Home,
-    Screen.Favorites,
-    Screen.Profile
-)
+val tabItems =
+    listOf(
+        Screen.Home,
+        Screen.Favorites,
+        Screen.Profile
+    )
 
 @Composable
 fun TabsRoute(
     tabNavController: NavHostController,
     navigateToDetail: (Long) -> Unit,
-    navigateToSearch: () -> Unit,
+    navigateToSearch: () -> Unit
 ) {
     TabsScreen(
         tabNavController,
         navigateToDetail,
-        navigateToSearch,
+        navigateToSearch
     )
 }
 
@@ -53,9 +50,8 @@ fun TabsRoute(
 fun TabsScreen(
     tabNavController: NavHostController,
     navigateToDetail: (Long) -> Unit,
-    navigateToSearch: () -> Unit,
+    navigateToSearch: () -> Unit
 ) {
-
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         contentColor = MaterialTheme.colorScheme.onBackground,
@@ -67,16 +63,27 @@ fun TabsScreen(
                 val currentDestination = navBackStackEntry?.destination
                 tabItems.forEach { topLevelRoute ->
                     val isSelected =
-                        currentDestination?.hierarchy?.any { it.route == topLevelRoute.route } == true
+                        currentDestination?.hierarchy?.any {
+                            it.route == topLevelRoute.route
+                        } == true
                     NavigationBarItem(
-                        colors = NavigationBarItemDefaults.colors(
+                        colors =
+                        NavigationBarItemDefaults.colors(
                             indicatorColor = Color.Transparent
                         ),
                         icon = {
                             val icon =
-                                if (isSelected) topLevelRoute.selectedIcon else topLevelRoute.unselectedIcon
+                                if (isSelected) {
+                                    topLevelRoute.selectedIcon
+                                } else {
+                                    topLevelRoute.unselectedIcon
+                                }
                             val color =
-                                if (isSelected) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.onBackground
+                                if (isSelected) {
+                                    MaterialTheme.colorScheme.primaryContainer
+                                } else {
+                                    MaterialTheme.colorScheme.onBackground
+                                }
                             icon?.let {
                                 Icon(
                                     tint = color,
@@ -115,10 +122,10 @@ fun TabsScreen(
         ) {
             feedNavGraph(
                 navigateToDetail = navigateToDetail,
-                navigateToSearch = navigateToSearch,
+                navigateToSearch = navigateToSearch
             )
             favouritesNavGraph(
-                navigateToDetail = navigateToDetail,
+                navigateToDetail = navigateToDetail
             )
             profileNavGraph()
         }

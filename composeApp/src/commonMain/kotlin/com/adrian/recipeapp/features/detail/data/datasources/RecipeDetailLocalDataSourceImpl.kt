@@ -7,9 +7,7 @@ import com.adrian.recipeapp.features.common.domain.entities.RecipeItem
 class RecipeDetailLocalDataSourceImpl(
     private val recipeDao: RecipeDao,
     private val favouriteDao: FavouriteRecipeDao
-): RecipeDetailLocalDataSource {
-
-
+) : RecipeDetailLocalDataSource {
     override suspend fun getRecipeDetail(id: Long): RecipeItem? {
         return recipeDao.getRecipeById(id)
     }

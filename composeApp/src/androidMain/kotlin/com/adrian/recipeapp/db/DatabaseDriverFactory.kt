@@ -14,7 +14,8 @@ actual class DatabaseDriverFactory(private var context: Context) {
             schema = schema,
             context = context,
             name = DB_FILE_NAME,
-            callback = object: AndroidSqliteDriver.Callback(schema) {
+            callback =
+            object : AndroidSqliteDriver.Callback(schema) {
                 override fun onOpen(db: SupportSQLiteDatabase) {
                     db.setForeignKeyConstraintsEnabled(true)
                 }

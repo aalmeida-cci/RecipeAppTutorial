@@ -50,7 +50,7 @@ fun SearchRoute(
     modifier: Modifier = Modifier,
     navigateBack: () -> Unit,
     navigateToDetail: (Long) -> Unit,
-    viewModel: SearchViewModel = koinViewModel(),
+    viewModel: SearchViewModel = koinViewModel()
 ) {
     val query by viewModel.query.collectAsStateWithLifecycle()
     val uiState by viewModel.searchUiState.collectAsStateWithLifecycle()
@@ -61,7 +61,7 @@ fun SearchRoute(
         onQueryChange = viewModel::onQueryChange,
         uiState = uiState,
         navigateBack = navigateBack,
-        navigateToDetail = navigateToDetail,
+        navigateToDetail = navigateToDetail
     )
 }
 
@@ -73,7 +73,7 @@ fun SearchScreen(
     onQueryChange: (String) -> Unit,
     uiState: SearchUiState,
     navigateBack: () -> Unit,
-    navigateToDetail: (Long) -> Unit,
+    navigateToDetail: (Long) -> Unit
 ) {
     Scaffold(
         modifier = modifier,
@@ -84,7 +84,7 @@ fun SearchScreen(
                     IconButton(onClick = navigateBack) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back",
+                            contentDescription = "Back"
                         )
                     }
                 }
@@ -92,24 +92,26 @@ fun SearchScreen(
         }
     ) { innerPadding ->
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .padding(horizontal = 16.dp),
+                .padding(horizontal = 16.dp)
         ) {
             SearchInputField(
                 query = query,
                 onQueryChange = onQueryChange,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
             )
             Spacer(Modifier.height(8.dp))
             when (uiState) {
                 is SearchUiState.Idle -> Unit
                 is SearchUiState.Loading -> Loader()
-                is SearchUiState.Success -> RecipeSearchResultList(
-                    recipes = uiState.recipes,
-                    navigateToDetail = navigateToDetail,
-                )
+                is SearchUiState.Success ->
+                    RecipeSearchResultList(
+                        recipes = uiState.recipes,
+                        navigateToDetail = navigateToDetail
+                    )
                 is SearchUiState.Empty -> EmptyResultsContent()
                 is SearchUiState.Error -> ErrorContent()
             }
@@ -121,7 +123,7 @@ fun SearchScreen(
 fun SearchInputField(
     modifier: Modifier = Modifier,
     query: String,
-    onQueryChange: (String) -> Unit,
+    onQueryChange: (String) -> Unit
 ) {
     OutlinedTextField(
         value = query,
@@ -132,20 +134,21 @@ fun SearchInputField(
             Icon(
                 imageVector = Icons.Default.Search,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
             )
         },
-        //shape = RoundedCornerShape(24.dp),
+        // shape = RoundedCornerShape(24.dp),
         shape = MaterialTheme.shapes.medium,
         singleLine = true,
-        colors = OutlinedTextFieldDefaults.colors(
+        colors =
+        OutlinedTextFieldDefaults.colors(
             focusedBorderColor = MaterialTheme.colorScheme.primaryContainer,
             focusedLabelColor = MaterialTheme.colorScheme.primaryContainer,
             cursorColor = MaterialTheme.colorScheme.primaryContainer,
             focusedContainerColor = MaterialTheme.colorScheme.onPrimary,
-            unfocusedContainerColor = MaterialTheme.colorScheme.onPrimary,
+            unfocusedContainerColor = MaterialTheme.colorScheme.onPrimary
         ),
-        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search)
     )
 }
 
@@ -153,54 +156,54 @@ fun SearchInputField(
 fun RecipeSearchResultList(
     modifier: Modifier = Modifier,
     recipes: List<RecipeItem>,
-    navigateToDetail: (Long) -> Unit,
+    navigateToDetail: (Long) -> Unit
 ) {
     LazyColumn(
         modifier = modifier,
-        contentPadding = PaddingValues(bottom = 16.dp),
+        contentPadding = PaddingValues(bottom = 16.dp)
     ) {
         items(recipes, key = { it.id }) { recipe ->
             SearchRecipeRow(
                 recipe = recipe,
-                onClick = { navigateToDetail(recipe.id) },
+                onClick = { navigateToDetail(recipe.id) }
             )
         }
     }
 }
 
 @Composable
-fun SearchRecipeRow(
-    modifier: Modifier = Modifier,
-    recipe: RecipeItem,
-    onClick: () -> Unit,
-) {
+fun SearchRecipeRow(modifier: Modifier = Modifier, recipe: RecipeItem, onClick: () -> Unit) {
     Row(
-        modifier = modifier
+        modifier =
+        modifier
             .fillMaxWidth()
             .clickable(onClick = onClick)
             .padding(vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         AsyncImage(
             model = recipe.imageUrl,
             contentDescription = recipe.title,
-            modifier = Modifier
+            modifier =
+            Modifier
                 .size(80.dp)
-                .clip(RoundedCornerShape(8.dp)),
+                .clip(RoundedCornerShape(8.dp))
         )
         Spacer(Modifier.width(12.dp))
-        Column(modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.Center) {
+        Column(
+            modifier = Modifier.weight(1f),
+            verticalArrangement = Arrangement.Center
+        ) {
             Text(
                 text = recipe.title,
                 style = MaterialTheme.typography.titleSmall,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
+                overflow = TextOverflow.Ellipsis
             )
             Spacer(Modifier.height(4.dp))
             Row(
                 modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
-                verticalAlignment = Alignment.CenterVertically,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Row(
                     modifier = Modifier.padding(end = 4.dp),
@@ -230,7 +233,7 @@ fun SearchRecipeRow(
                     Text(
                         text = " ${recipe.rating}",
                         style = MaterialTheme.typography.bodySmall,
-                        modifier = Modifier.padding(start = 4.dp),
+                        modifier = Modifier.padding(start = 4.dp)
                     )
                 }
             }
@@ -265,12 +268,12 @@ fun EmptyResultsContent(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = "No results",
             style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
     }
 }

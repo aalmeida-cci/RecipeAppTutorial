@@ -1,4 +1,3 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -6,9 +5,10 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    //kotlin("plugin.serialization") version "1.9.20"
+    // kotlin("plugin.serialization") version "1.9.20"
     alias(libs.plugins.serialization)
     alias(libs.plugins.sqlDelight)
+    alias(libs.plugins.ktlint)
 }
 
 kotlin {
@@ -21,7 +21,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosArm64(),
         iosSimulatorArm64()
@@ -31,16 +31,16 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.activity.compose)
-            //Ktor
+            // Ktor
             implementation(libs.ktor.client.android)
-            //koin
+            // koin
             implementation(libs.koin.android)
-            //Sql delight
+            // Sql delight
             implementation(libs.sql.android.driver)
         }
         commonMain.dependencies {
@@ -54,33 +54,32 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
-            //Ktor
+            // Ktor
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.ktor.client.logging)
 
-            //Navigation
+            // Navigation
             implementation(libs.navigation.compose)
 
-            //Coil
+            // Coil
             implementation(libs.coil.compose)
             implementation(libs.coil.network.ktor3)
 
-            //Koin
+            // Koin
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
 
-            //Date time
+            // Date time
             implementation(libs.kotlinx.datetime)
 
-            //Settings
+            // Settings
             implementation(libs.multiplatform.settings)
 
-            //sql delight adapters
+            // sql delight adapters
             implementation(libs.primitive.adapters)
-
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
@@ -121,6 +120,27 @@ android {
 
 dependencies {
     debugImplementation(libs.compose.uiTooling)
+}
+
+ktlint {
+    filter {
+        include("**/src/**/*.kt", "**/src/**/*.kts")
+    }
+}
+
+tasks.withType<org.jlleitschuh.gradle.ktlint.tasks.KtLintCheckTask>().configureEach {
+    setSource(
+        layout.projectDirectory.dir("src").asFileTree.matching {
+            include("**/*.kt", "**/*.kts")
+        }
+    )
+}
+tasks.withType<org.jlleitschuh.gradle.ktlint.tasks.KtLintFormatTask>().configureEach {
+    setSource(
+        layout.projectDirectory.dir("src").asFileTree.matching {
+            include("**/*.kt", "**/*.kts")
+        }
+    )
 }
 
 sqldelight {

@@ -6,7 +6,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.adrian.recipeapp.features.app.data.Screen
-import com.adrian.recipeapp.features.profile.ui.ProfileRoute
 import com.adrian.recipeapp.features.tabs.ui.TabsRoute
 
 fun NavController.navigateToTabs(navOptions: NavOptions? = null) {
@@ -22,7 +21,7 @@ fun NavGraphBuilder.tabsNavGraph(
         TabsRoute(
             navigateToDetail = navigateToDetail,
             tabNavController = tabNavController,
-            navigateToSearch = navigateToSearch,
+            navigateToSearch = navigateToSearch
         )
     }
 }

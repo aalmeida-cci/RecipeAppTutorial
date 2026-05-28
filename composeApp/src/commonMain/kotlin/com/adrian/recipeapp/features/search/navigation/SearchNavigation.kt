@@ -11,14 +11,11 @@ fun NavController.navigateToSearch(navOptions: NavOptions? = null) {
     navigate(Screen.Search.route)
 }
 
-fun NavGraphBuilder.searchNavGraph(
-    navigateBack: () -> Unit,
-    navigateToDetail: (Long) -> Unit,
-) {
+fun NavGraphBuilder.searchNavGraph(navigateBack: () -> Unit, navigateToDetail: (Long) -> Unit) {
     composable(Screen.Search.route) {
         SearchRoute(
             navigateBack = navigateBack,
-            navigateToDetail = navigateToDetail,
+            navigateToDetail = navigateToDetail
         )
     }
 }

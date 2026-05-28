@@ -4,8 +4,8 @@ import com.adrian.recipeapp.features.common.data.database.daos.FavouriteRecipeDa
 import com.adrian.recipeapp.features.common.domain.entities.RecipeItem
 
 class FavouriteRecipeLocalDataSourceImpl(
-    private val favouriteRecipeDao: FavouriteRecipeDao,
-): FavouriteRecipeLocalDataSource {
+    private val favouriteRecipeDao: FavouriteRecipeDao
+) : FavouriteRecipeLocalDataSource {
     override suspend fun getAllFavouriteRecipes(): List<RecipeItem> {
         return favouriteRecipeDao.getAllFavouriteRecipes()
     }

@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 class FeedViewModel(
     private val feedRepository: FeedRepository
 ) : ViewModel() {
-
     private var _feedUiState = MutableStateFlow(FeedUiState())
     val feedUiState = _feedUiState.asStateFlow()
 
@@ -24,10 +23,11 @@ class FeedViewModel(
     private suspend fun getRecipesList() {
         val recipesList = feedRepository.getRecipesList()
         if (recipesList.isSuccess) {
-            _feedUiState.value = _feedUiState.value.copy(
-                recipesList = recipesList.getOrDefault(emptyList()),
-                recipesListIsLoading = false
-            )
+            _feedUiState.value =
+                _feedUiState.value.copy(
+                    recipesList = recipesList.getOrDefault(emptyList()),
+                    recipesListIsLoading = false
+                )
         } else {
             _feedUiState.update {
                 it.copy(
@@ -37,5 +37,4 @@ class FeedViewModel(
             }
         }
     }
-
 }

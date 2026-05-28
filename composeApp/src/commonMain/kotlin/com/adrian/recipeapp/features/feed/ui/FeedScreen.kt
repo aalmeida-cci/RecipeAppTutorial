@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -30,7 +29,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -63,7 +61,7 @@ fun FeedRoute(
     FeedScreen(
         feedUiState = feedUiState.value,
         navigateToSearch = navigateToSearch,
-        navigateToDetail = navigateToDetail,
+        navigateToDetail = navigateToDetail
     )
 }
 
@@ -73,7 +71,6 @@ fun FeedScreen(
     navigateToSearch: () -> Unit,
     navigateToDetail: (Long) -> Unit
 ) {
-
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
@@ -105,10 +102,11 @@ fun FeedScreen(
 @Composable
 private fun TopBar(navigateToSearch: () -> Unit) {
     Column(
-        modifier = Modifier
+        modifier =
+        Modifier
             .windowInsetsPadding(WindowInsets.statusBars)
             .background(MaterialTheme.colorScheme.background)
-            //.padding(16.dp)
+            // .padding(16.dp)
             .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
     ) {
         Text(
@@ -119,19 +117,22 @@ private fun TopBar(navigateToSearch: () -> Unit) {
         Text(
             text = "Got a tasty dish in mind?",
             color = MaterialTheme.colorScheme.onBackground,
-            style = MaterialTheme.typography.titleLarge.copy(
+            style =
+            MaterialTheme.typography.titleLarge.copy(
                 fontWeight = FontWeight.Bold
             )
         )
         SearchBar(
-            modifier = Modifier.fillMaxWidth().padding(top = 16.dp).height(45.dp)
+            modifier =
+            Modifier.fillMaxWidth().padding(top = 16.dp).height(45.dp)
                 .background(
                     MaterialTheme.colorScheme.onPrimary,
                     shape = RoundedCornerShape(12.dp)
                 ).border(
                     width = 1.dp,
                     shape = RoundedCornerShape(12.dp),
-                    color = MaterialTheme.colorScheme.onBackground.copy(
+                    color =
+                    MaterialTheme.colorScheme.onBackground.copy(
                         alpha = 0.3f
                     )
                 )
@@ -147,18 +148,19 @@ private fun TopBar(navigateToSearch: () -> Unit) {
 private fun SearchBar(modifier: Modifier) {
     Box(
         modifier = modifier,
-        contentAlignment = Alignment.CenterStart,
+        contentAlignment = Alignment.CenterStart
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
         ) {
             Icon(imageVector = Icons.Default.Search, contentDescription = "Search")
             Spacer(modifier = Modifier.width(8.dp))
             Text(
                 text = "Search any recipes",
                 fontSize = 16.sp,
-                color = MaterialTheme.colorScheme.onBackground.copy(
+                color =
+                MaterialTheme.colorScheme.onBackground.copy(
                     alpha = 0.7f
                 )
             )
@@ -170,13 +172,14 @@ private fun SearchBar(modifier: Modifier) {
 private fun FeedContent(
     innerPadding: PaddingValues,
     recipes: List<RecipeItem>,
-    navigateToDetail: (Long) -> Unit,
+    navigateToDetail: (Long) -> Unit
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.padding(
+        modifier =
+        Modifier.padding(
             top = innerPadding.calculateTopPadding()
         )
     ) {
@@ -184,28 +187,27 @@ private fun FeedContent(
             span = { GridItemSpan(maxLineSpan) }
         ) {
             TopRecipesList(
-                title = "Top Recommendations", recipes = recipes.reversed(),
-                navigateToDetail = navigateToDetail,
+                title = "Top Recommendations",
+                recipes = recipes.reversed(),
+                navigateToDetail = navigateToDetail
             )
         }
 
         recipesOfTheWeek(
-            "Recipes Of the Week", recipes = recipes,
-            navigateToDetail = navigateToDetail,
+            "Recipes Of the Week",
+            recipes = recipes,
+            navigateToDetail = navigateToDetail
         )
     }
 }
 
 @Composable
-fun TopRecipesList(
-    title: String,
-    recipes: List<RecipeItem>,
-    navigateToDetail: (Long) -> Unit,
-) {
+fun TopRecipesList(title: String, recipes: List<RecipeItem>, navigateToDetail: (Long) -> Unit) {
     Column {
         Text(
             title,
-            style = MaterialTheme.typography.titleMedium.copy(
+            style =
+            MaterialTheme.typography.titleMedium.copy(
                 fontSize = 18.sp
             ),
             modifier = Modifier.padding(top = 16.dp, start = 16.dp)
@@ -221,27 +223,25 @@ fun TopRecipesList(
                     recipe,
                     modifier = Modifier.width(115.dp),
                     imageModifier = imageModifier,
-                    navigateToDetail,
+                    navigateToDetail
                 )
             }
-
         }
-
     }
 }
-
 
 private fun LazyGridScope.recipesOfTheWeek(
     title: String,
     recipes: List<RecipeItem>,
-    navigateToDetail: (Long) -> Unit,
+    navigateToDetail: (Long) -> Unit
 ) {
     item(
         span = { GridItemSpan(maxLineSpan) }
     ) {
         Text(
             text = title,
-            style = MaterialTheme.typography.titleMedium.copy(
+            style =
+            MaterialTheme.typography.titleMedium.copy(
                 fontSize = 18.sp
             ),
             modifier = Modifier.padding(top = 16.dp, start = 16.dp)
@@ -258,10 +258,10 @@ private fun LazyGridScope.recipesOfTheWeek(
             recipe,
             Modifier.padding(
                 start = cardPaddingStart,
-                end = cardPaddingEnd,
+                end = cardPaddingEnd
             ),
             imageModifier,
-            navigateToDetail,
+            navigateToDetail
         )
     }
 }
@@ -271,11 +271,12 @@ private fun RecipeCard(
     recipe: RecipeItem,
     modifier: Modifier,
     imageModifier: Modifier,
-    navigateToDetail: (Long) -> Unit,
+    navigateToDetail: (Long) -> Unit
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.clickable {
+        modifier =
+        modifier.clickable {
             navigateToDetail(recipe.id)
         }
     ) {
@@ -286,7 +287,7 @@ private fun RecipeCard(
             },
             modifier = imageModifier,
             contentScale = ContentScale.Crop,
-            contentDescription = null,
+            contentDescription = null
         )
         Text(
             textAlign = TextAlign.Start,
@@ -294,7 +295,8 @@ private fun RecipeCard(
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
-            style = MaterialTheme.typography.bodyMedium.copy(
+            style =
+            MaterialTheme.typography.bodyMedium.copy(
                 fontWeight = FontWeight.Medium
             )
         )
@@ -333,7 +335,7 @@ private fun RecipeCard(
                     /*style = MaterialTheme.typography.labelSmall.copy(
                         fontSize = 10.sp
                     ),*/
-                    modifier = Modifier.padding(start = 2.dp),
+                    modifier = Modifier.padding(start = 2.dp)
                 )
             }
         }
