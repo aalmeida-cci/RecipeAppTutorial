@@ -121,4 +121,12 @@ class RecipeDao(
             database.recipeEntityQueries.deleteRecipeById(id)
         }
     }
+
+    suspend fun searchRecipes(query: String): List<RecipeItem> {
+        return dbHelper.withDatabase { database ->
+            database.recipeEntityQueries.searchRecipes(query).awaitAsList().map {
+                recipeEntityMapper(it)
+            }
+        }
+    }
 }

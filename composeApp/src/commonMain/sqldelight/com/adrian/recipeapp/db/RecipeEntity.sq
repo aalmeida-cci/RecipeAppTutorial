@@ -70,3 +70,9 @@ DELETE FROM Recipe WHERE id = ?;
 
 deleteAllRecipes:
 DELETE FROM Recipe;
+
+searchRecipes:
+SELECT * FROM Recipe
+WHERE lower(title)       LIKE ('%' || lower(:query) || '%')
+   OR lower(description) LIKE ('%' || lower(:query) || '%')
+   OR lower(ingredients) LIKE ('%' || lower(:query) || '%');

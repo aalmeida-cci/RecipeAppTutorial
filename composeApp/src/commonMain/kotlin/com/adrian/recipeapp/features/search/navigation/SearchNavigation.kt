@@ -7,12 +7,18 @@ import androidx.navigation.compose.composable
 import com.adrian.recipeapp.features.app.data.Screen
 import com.adrian.recipeapp.features.search.ui.SearchRoute
 
-fun NavController.navigateToSearch(navOptions: NavOptions ? = null) {
+fun NavController.navigateToSearch(navOptions: NavOptions? = null) {
     navigate(Screen.Search.route)
 }
 
-fun NavGraphBuilder.searchNavGraph() {
+fun NavGraphBuilder.searchNavGraph(
+    navigateBack: () -> Unit,
+    navigateToDetail: (Long) -> Unit,
+) {
     composable(Screen.Search.route) {
-        SearchRoute()
+        SearchRoute(
+            navigateBack = navigateBack,
+            navigateToDetail = navigateToDetail,
+        )
     }
 }
