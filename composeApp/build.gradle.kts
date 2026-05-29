@@ -78,6 +78,9 @@ kotlin {
             // Settings
             implementation(libs.multiplatform.settings)
 
+            // DataStore
+            implementation(libs.datastore.preferences)
+
             // sql delight adapters
             implementation(libs.primitive.adapters)
         }

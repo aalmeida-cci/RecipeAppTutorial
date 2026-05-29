@@ -43,7 +43,13 @@ import coil3.compose.AsyncImage
 import com.adrian.recipeapp.features.common.domain.entities.RecipeItem
 import com.adrian.recipeapp.features.common.ui.components.ErrorContent
 import com.adrian.recipeapp.features.common.ui.components.Loader
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import recipeapp.composeapp.generated.resources.Res
+import recipeapp.composeapp.generated.resources.back_icon_desc
+import recipeapp.composeapp.generated.resources.no_results
+import recipeapp.composeapp.generated.resources.search_hint
+import recipeapp.composeapp.generated.resources.search_recipes
 
 @Composable
 fun SearchRoute(
@@ -79,12 +85,12 @@ fun SearchScreen(
         modifier = modifier,
         topBar = {
             TopAppBar(
-                title = { Text("Search Recipes") },
+                title = { Text(stringResource(Res.string.search_recipes)) },
                 navigationIcon = {
                     IconButton(onClick = navigateBack) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = stringResource(Res.string.back_icon_desc)
                         )
                     }
                 }
@@ -129,7 +135,7 @@ fun SearchInputField(
         value = query,
         onValueChange = onQueryChange,
         modifier = modifier,
-        placeholder = { Text("Search Recipe Items...") },
+        placeholder = { Text(stringResource(Res.string.search_hint)) },
         leadingIcon = {
             Icon(
                 imageVector = Icons.Default.Search,
@@ -271,7 +277,7 @@ fun EmptyResultsContent(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "No results",
+            text = stringResource(Res.string.no_results),
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )

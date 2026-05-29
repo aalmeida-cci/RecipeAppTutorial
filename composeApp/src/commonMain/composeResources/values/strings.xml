@@ -8,4 +8,44 @@
     <string name="tabs">Tabs</string>
     <string name="detail">Detail</string>
     <string name="splash">Splash</string>
+
+    <!-- Feed -->
+    <string name="hi_there">Hi there!</string>
+    <string name="got_tasty_dish">Got a tasty dish in mind?</string>
+    <string name="top_recommendations">Top Recommendations</string>
+    <string name="recipes_of_the_week">Recipes Of the Week</string>
+
+    <!-- Search -->
+    <string name="search_recipes">Search Recipes</string>
+    <string name="search_hint">Search Recipe Items...</string>
+    <string name="no_results">No results</string>
+
+    <!-- Detail -->
+    <string name="description">Description</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="instructions">Instructions</string>
+    <string name="watch_video">Watch Video</string>
+    <string name="go_back">Go Back</string>
+
+    <!-- Profile -->
+    <string name="profile_title">Profile</string>
+    <string name="qr_code_scan">QR Code Scan</string>
+    <string name="qr_code_generation">QR Code Generation</string>
+    <string name="connect_bluetooth">Connect to Bluetooth Device</string>
+    <string name="notification">Notification</string>
+    <string name="language">Language</string>
+    <string name="logout">Logout</string>
+
+    <!-- Language Bottom Sheet -->
+    <string name="select_language">Select Language</string>
+    <string name="english">English</string>
+    <string name="french">French</string>
+    <string name="apply">Apply</string>
+
+    <!-- Common -->
+    <string name="error_loading_items">Error in loading Items</string>
+    <string name="search_any_recipes">Search any recipes</string>
+    <string name="search_icon_desc">Search</string>
+    <string name="back_icon_desc">Back</string>
+    <string name="watch_icon_desc">Watch</string>
 </resources>

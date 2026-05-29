@@ -1,4 +1,11 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(cat /tmp/android-res/commonMain/org/jetbrains/compose/resources/ResourceEnvironment.kt)",
+      "Read(//private/tmp/android-res/commonMain/org/jetbrains/compose/resources/**)",
+      "WebFetch(domain:medium.com)"
+    ]
+  },
   "hooks": {
     "PreToolUse": [
       {

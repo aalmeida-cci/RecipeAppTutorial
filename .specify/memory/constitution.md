@@ -25,7 +25,20 @@ Empty abstractions violate Principle IV (Code Reuse — No Duplication) and the 
 follow-up obligation when real data integration arrives.
 Affected principles: I, V.
 Templates requiring updates: none (exception is conditional, not a structural change).
+
+---
+
+Amendment 1.0.2 — 2026-05-28
+Added bounded exceptions to Principles III and V for preference-only and bottom-sheet-only features.
+Rationale: The cache-first pattern (Principle III) presupposes a remote source to cache from; a
+preference repository backed solely by DataStore has no remote source by design, making the pattern
+structurally inapplicable. Similarly, forcing a `navigation/` package and `data/models/` package onto
+features that have no nav route and no API DTO creates dead-code scaffolding, violating Principle IV.
+Each exception is bounded with explicit conditions and documentation requirements.
+Affected principles: III, V.
+Templates requiring updates: none (exceptions are conditional, not structural changes).
 -->
+
 
 # RecipeApp Constitution
 
@@ -69,6 +82,8 @@ Every `RepositoryImpl` MUST follow the cache-first pattern:
 
 Returning stale or remote-only data without persisting is a violation.
 
+**Preference-Only Exception**: A repository that wraps a local-only preference store (DataStore, SharedPreferences) with no corresponding remote source is exempt from the cache-first pattern. The pattern requires a remote source; when none exists by design the requirement is inapplicable. The repository MUST still return `Result<T>` and MUST NOT throw across the boundary. Conditions: (1) no remote API endpoint exists for this data; (2) plan.md Complexity Tracking documents the omission.
+
 ### IV. Code Reuse — No Duplication
 
 Before adding any new class, function, DAO query, mapper, or Composable, verify that an equivalent does not already exist.
@@ -99,6 +114,10 @@ Every new feature MUST follow this exact layout under `commonMain/kotlin/com/adr
 ```
 
 Deviation from this layout requires explicit justification and constitution amendment.
+
+**Bottom-Sheet-Only Exception**: A feature whose sole UI surface is a modal bottom sheet invoked via parent UiState (not via `NavController`) MAY omit the `navigation/` package. Conditions: (1) no nav route exists for the feature; (2) plan.md Complexity Tracking documents the omission; (3) if a nav route is added later, `navigation/` MUST be introduced at that time.
+
+**No-DTO Exception**: A feature with no remote data source and no API response to deserialize MAY omit `data/models/`. Conditions: (1) all persistence keys are primitives (String, Int, Boolean); (2) no `toEntity()` mapper is needed; (3) plan.md Complexity Tracking documents the omission.
 
 **UI-Only Feature Exception**: When Principle I's UI-Only Feature Exception applies, the `domain/` and `data/` packages MAY be omitted. Only `navigation/` and `ui/` are required. The same three conditions from Principle I apply (documented spec, Complexity Tracking entry, follow-up obligation).
 
@@ -160,4 +179,4 @@ This constitution supersedes all other coding guidelines, README snippets, or ve
 
 **Runtime guidance:** Refer to `.specify/memory/architecture/architecture.md` for canonical layer diagrams, data-flow examples, and Koin module graph details.
 
-**Version**: 1.0.1 | **Ratified**: 2026-05-25 | **Last Amended**: 2026-05-28
+**Version**: 1.0.2 | **Ratified**: 2026-05-25 | **Last Amended**: 2026-05-28

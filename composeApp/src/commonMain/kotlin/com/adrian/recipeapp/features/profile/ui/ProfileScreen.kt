@@ -46,20 +46,53 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.adrian.recipeapp.features.language.ui.LanguageBottomSheet
+import com.adrian.recipeapp.features.language.ui.LanguageUiState
+import com.adrian.recipeapp.features.language.ui.LanguageViewModel
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import recipeapp.composeapp.generated.resources.Res
+import recipeapp.composeapp.generated.resources.connect_bluetooth
+import recipeapp.composeapp.generated.resources.language
+import recipeapp.composeapp.generated.resources.logout
+import recipeapp.composeapp.generated.resources.notification
 import recipeapp.composeapp.generated.resources.profile_dummy
+import recipeapp.composeapp.generated.resources.profile_title
+import recipeapp.composeapp.generated.resources.qr_code_generation
+import recipeapp.composeapp.generated.resources.qr_code_scan
 
 @Composable
 fun ProfileRoute(modifier: Modifier = Modifier, viewModel: ProfileViewModel = koinViewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    ProfileScreen(uiState = uiState, modifier = modifier)
+    val langViewModel: LanguageViewModel = koinViewModel()
+    val langState by langViewModel.uiState.collectAsStateWithLifecycle()
+
+    ProfileScreen(
+        uiState = uiState,
+        langState = langState,
+        onLanguageRowTap = langViewModel::onLanguageRowTapped,
+        modifier = modifier
+    )
+
+    if (langState.isBottomSheetVisible) {
+        LanguageBottomSheet(
+            uiState = langState,
+            onLanguageSelected = langViewModel::onLanguageSelected,
+            onApply = langViewModel::onApply,
+            onDismiss = langViewModel::onDismiss
+        )
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfileScreen(uiState: ProfileUiState, modifier: Modifier = Modifier) {
+fun ProfileScreen(
+    uiState: ProfileUiState,
+    langState: LanguageUiState,
+    onLanguageRowTap: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Scaffold(
         modifier = modifier.systemBarsPadding(),
         topBar = {
@@ -68,7 +101,7 @@ fun ProfileScreen(uiState: ProfileUiState, modifier: Modifier = Modifier) {
                 TopAppBarDefaults.topAppBarColors().copy(
                     containerColor = MaterialTheme.colorScheme.background
                 ),
-                title = { Text("Profile") }
+                title = { Text(stringResource(Res.string.profile_title)) }
             )
         }
     ) { innerPadding ->
@@ -100,7 +133,9 @@ fun ProfileScreen(uiState: ProfileUiState, modifier: Modifier = Modifier) {
 
             Spacer(Modifier.height(24.dp))
 
-            SettingsGroup(items = settingsRows)
+            SettingsGroup(
+                onLanguageRowTap = onLanguageRowTap
+            )
 
             Spacer(Modifier.height(24.dp))
         }
@@ -135,20 +170,26 @@ private fun ProfileAvatar(modifier: Modifier = Modifier) {
     }
 }
 
-private data class SettingsRowItem(val icon: ImageVector, val label: String)
-
-private val settingsRows =
-    listOf(
-        SettingsRowItem(Icons.Default.QrCodeScanner, "QR Code Scan"),
-        SettingsRowItem(Icons.Default.QrCode2, "QR Code Generation"),
-        SettingsRowItem(Icons.Default.Bluetooth, "Connect to Bluetooth Device"),
-        SettingsRowItem(Icons.Default.Notifications, "Notification"),
-        SettingsRowItem(Icons.Default.Language, "Language"),
-        SettingsRowItem(Icons.AutoMirrored.Filled.Logout, "Logout")
-    )
+private data class SettingsRowItem(
+    val icon: ImageVector,
+    val label: String,
+    val onClick: () -> Unit = {}
+)
 
 @Composable
-private fun SettingsGroup(items: List<SettingsRowItem>, modifier: Modifier = Modifier) {
+private fun SettingsGroup(onLanguageRowTap: () -> Unit, modifier: Modifier = Modifier) {
+    val rows = listOf(
+        SettingsRowItem(Icons.Default.QrCodeScanner, stringResource(Res.string.qr_code_scan)),
+        SettingsRowItem(Icons.Default.QrCode2, stringResource(Res.string.qr_code_generation)),
+        SettingsRowItem(Icons.Default.Bluetooth, stringResource(Res.string.connect_bluetooth)),
+        SettingsRowItem(Icons.Default.Notifications, stringResource(Res.string.notification)),
+        SettingsRowItem(
+            Icons.Default.Language,
+            stringResource(Res.string.language),
+            onLanguageRowTap
+        ),
+        SettingsRowItem(Icons.AutoMirrored.Filled.Logout, stringResource(Res.string.logout))
+    )
     Surface(
         modifier =
         modifier
@@ -158,9 +199,9 @@ private fun SettingsGroup(items: List<SettingsRowItem>, modifier: Modifier = Mod
         color = MaterialTheme.colorScheme.surfaceContainer
     ) {
         Column {
-            items.forEachIndexed { index, item ->
+            rows.forEachIndexed { index, item ->
                 SettingsRow(item = item)
-                if (index < items.lastIndex) {
+                if (index < rows.lastIndex) {
                     HorizontalDivider(
                         thickness = 0.3.dp,
                         color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)
@@ -177,7 +218,7 @@ private fun SettingsRow(item: SettingsRowItem, modifier: Modifier = Modifier) {
         modifier =
         modifier
             .fillMaxWidth()
-            .clickable {}
+            .clickable { item.onClick() }
             .padding(horizontal = 16.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {

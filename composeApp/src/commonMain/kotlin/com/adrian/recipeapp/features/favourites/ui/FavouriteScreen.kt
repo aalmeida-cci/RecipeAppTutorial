@@ -42,7 +42,10 @@ import coil3.compose.AsyncImage
 import com.adrian.recipeapp.features.common.domain.entities.RecipeItem
 import com.adrian.recipeapp.features.common.ui.components.ErrorContent
 import com.adrian.recipeapp.features.common.ui.components.Loader
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import recipeapp.composeapp.generated.resources.Res
+import recipeapp.composeapp.generated.resources.favourites
 
 @Composable
 fun FavouritesRoute(
@@ -73,7 +76,7 @@ fun FavouritesScreen(uiState: FavouriteScreenUiState, navigateToDetail: (Long) -
                     containerColor = MaterialTheme.colorScheme.background
                 ),
                 title = {
-                    Text("Favourites")
+                    Text(stringResource(Res.string.favourites))
                 }
             )
         }
