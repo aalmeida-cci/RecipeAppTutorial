@@ -29,8 +29,8 @@
 
     <!-- Profile -->
     <string name="profile_title">Profil</string>
-    <string name="qr_code_scan">Scan QR Code</string>
-    <string name="qr_code_generation">Génération QR Code</string>
+    <string name="qr_code_scan">Scanner le code QR</string>
+    <string name="qr_code_generation">Génération de codes QR</string>
     <string name="connect_bluetooth">Connecter un appareil Bluetooth</string>
     <string name="notification">Notification</string>
     <string name="language">Langue</string>
