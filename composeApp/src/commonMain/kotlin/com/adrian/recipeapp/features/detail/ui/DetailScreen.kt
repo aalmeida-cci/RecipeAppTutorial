@@ -45,7 +45,15 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.adrian.recipeapp.features.common.data.models.capitalizeFirstWord
 import com.adrian.recipeapp.features.common.domain.entities.RecipeItem
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import recipeapp.composeapp.generated.resources.Res
+import recipeapp.composeapp.generated.resources.description
+import recipeapp.composeapp.generated.resources.go_back
+import recipeapp.composeapp.generated.resources.ingredients
+import recipeapp.composeapp.generated.resources.instructions
+import recipeapp.composeapp.generated.resources.watch_icon_desc
+import recipeapp.composeapp.generated.resources.watch_video
 
 @Composable
 fun DetailRoute(
@@ -135,7 +143,7 @@ fun ErrorScreen(errorMsg: String, onBackClick: () -> Unit) {
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = onBackClick) {
-            Text("Go Back")
+            Text(stringResource(Res.string.go_back))
         }
     }
 }
@@ -245,7 +253,7 @@ fun RecipeMainContent(recipeItem: RecipeItem, onWatchVideoClick: (String) -> Uni
             modifier = Modifier.padding(horizontal = 16.dp).padding(bottom = 16.dp)
         ) {
             Text(
-                "Description",
+                stringResource(Res.string.description),
                 style =
                 MaterialTheme.typography.titleMedium.copy(
                     fontWeight = FontWeight.Bold
@@ -338,7 +346,7 @@ fun IngredientsList(ingredients: List<Pair<String, String>>) {
         modifier = Modifier.padding(horizontal = 16.dp)
     ) {
         Text(
-            "Ingredients",
+            stringResource(Res.string.ingredients),
             style =
             MaterialTheme.typography.titleMedium.copy(
                 fontWeight = FontWeight.Bold
@@ -368,7 +376,7 @@ fun IngredientsItem(name: String, quantity: String) {
 fun Instructions(instructions: List<String>) {
     Column(modifier = Modifier.padding(horizontal = 16.dp)) {
         Text(
-            text = "Instructions",
+            text = stringResource(Res.string.instructions),
             style =
             MaterialTheme.typography.titleMedium.copy(
                 fontWeight = FontWeight.Bold
@@ -398,12 +406,12 @@ fun WatchVideoBtn(youTubeLink: String, onWatchVideoClick: (String) -> Unit) {
     ) {
         Icon(
             imageVector = Icons.Default.PlayArrow,
-            contentDescription = "Watch",
+            contentDescription = stringResource(Res.string.watch_icon_desc),
             tint = MaterialTheme.colorScheme.onPrimary
         )
         Spacer(modifier = Modifier.width(16.dp))
         Text(
-            "Watch Video",
+            stringResource(Res.string.watch_video),
             style =
             MaterialTheme.typography.bodyMedium.copy(
                 color = MaterialTheme.colorScheme.onPrimaryContainer

@@ -1,0 +1,51 @@
+<resources>
+    <!-- Navigation -->
+    <string name="home">Accueil</string>
+    <string name="favourites">Favoris</string>
+    <string name="profile">Profil</string>
+    <string name="search">Rechercher</string>
+    <string name="feed">Fil</string>
+    <string name="tabs">Tabs</string>
+    <string name="detail">Détail</string>
+    <string name="splash">Splash</string>
+
+    <!-- Feed -->
+    <string name="hi_there">Bonjour!</string>
+    <string name="got_tasty_dish">Un plat savoureux en tête?</string>
+    <string name="top_recommendations">Meilleures recommandations</string>
+    <string name="recipes_of_the_week">Recettes de la semaine</string>
+
+    <!-- Search -->
+    <string name="search_recipes">Rechercher des recettes</string>
+    <string name="search_hint">Rechercher des recettes...</string>
+    <string name="no_results">Aucun résultat</string>
+
+    <!-- Detail -->
+    <string name="description">Description</string>
+    <string name="ingredients">Ingrédients</string>
+    <string name="instructions">Instructions</string>
+    <string name="watch_video">Regarder la vidéo</string>
+    <string name="go_back">Retour</string>
+
+    <!-- Profile -->
+    <string name="profile_title">Profil</string>
+    <string name="qr_code_scan">Scan QR Code</string>
+    <string name="qr_code_generation">Génération QR Code</string>
+    <string name="connect_bluetooth">Connecter un appareil Bluetooth</string>
+    <string name="notification">Notification</string>
+    <string name="language">Langue</string>
+    <string name="logout">Déconnexion</string>
+
+    <!-- Language Bottom Sheet -->
+    <string name="select_language">Sélectionner la langue</string>
+    <string name="english">Anglais</string>
+    <string name="french">Français</string>
+    <string name="apply">Appliquer</string>
+
+    <!-- Common -->
+    <string name="error_loading_items">Erreur lors du chargement</string>
+    <string name="search_any_recipes">Rechercher des recettes</string>
+    <string name="search_icon_desc">Rechercher</string>
+    <string name="back_icon_desc">Retour</string>
+    <string name="watch_icon_desc">Regarder</string>
+</resources>

@@ -16,6 +16,10 @@ import com.adrian.recipeapp.features.feed.data.datasource.FeedRemoteDataSource
 import com.adrian.recipeapp.features.feed.data.datasource.FeedRemoteDataSourceImpl
 import com.adrian.recipeapp.features.feed.data.repositories.FeedRepositoryImpl
 import com.adrian.recipeapp.features.feed.domain.repositories.FeedRepository
+import com.adrian.recipeapp.features.language.data.datasources.LanguageDataSource
+import com.adrian.recipeapp.features.language.data.datasources.LanguageDataSourceImpl
+import com.adrian.recipeapp.features.language.data.repositories.LanguageRepositoryImpl
+import com.adrian.recipeapp.features.language.domain.repositories.LanguageRepository
 import com.adrian.recipeapp.features.search.data.datasources.SearchLocalDataSource
 import com.adrian.recipeapp.features.search.data.datasources.SearchLocalDataSourceImpl
 import com.adrian.recipeapp.features.search.data.repositories.SearchRepositoryImpl
@@ -40,4 +44,8 @@ fun dataModule() = module {
     // Search
     single<SearchLocalDataSource> { SearchLocalDataSourceImpl(get()) }
     single<SearchRepository> { SearchRepositoryImpl(get()) }
+
+    // Language
+    single<LanguageDataSource> { LanguageDataSourceImpl(get()) }
+    single<LanguageRepository> { LanguageRepositoryImpl(get()) }
 }

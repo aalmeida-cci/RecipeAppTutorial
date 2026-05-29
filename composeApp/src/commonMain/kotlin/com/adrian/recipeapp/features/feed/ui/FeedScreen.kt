@@ -49,7 +49,15 @@ import coil3.compose.AsyncImage
 import com.adrian.recipeapp.features.common.domain.entities.RecipeItem
 import com.adrian.recipeapp.features.common.ui.components.ErrorContent
 import com.adrian.recipeapp.features.common.ui.components.Loader
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import recipeapp.composeapp.generated.resources.Res
+import recipeapp.composeapp.generated.resources.got_tasty_dish
+import recipeapp.composeapp.generated.resources.hi_there
+import recipeapp.composeapp.generated.resources.recipes_of_the_week
+import recipeapp.composeapp.generated.resources.search_any_recipes
+import recipeapp.composeapp.generated.resources.search_icon_desc
+import recipeapp.composeapp.generated.resources.top_recommendations
 
 @Composable
 fun FeedRoute(
@@ -110,12 +118,12 @@ private fun TopBar(navigateToSearch: () -> Unit) {
             .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
     ) {
         Text(
-            text = "Hi there!",
+            text = stringResource(Res.string.hi_there),
             color = MaterialTheme.colorScheme.primaryContainer,
             style = MaterialTheme.typography.titleMedium
         )
         Text(
-            text = "Got a tasty dish in mind?",
+            text = stringResource(Res.string.got_tasty_dish),
             color = MaterialTheme.colorScheme.onBackground,
             style =
             MaterialTheme.typography.titleLarge.copy(
@@ -154,10 +162,13 @@ private fun SearchBar(modifier: Modifier) {
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Icon(imageVector = Icons.Default.Search, contentDescription = "Search")
+            Icon(
+                imageVector = Icons.Default.Search,
+                contentDescription = stringResource(Res.string.search_icon_desc)
+            )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "Search any recipes",
+                text = stringResource(Res.string.search_any_recipes),
                 fontSize = 16.sp,
                 color =
                 MaterialTheme.colorScheme.onBackground.copy(
@@ -174,6 +185,8 @@ private fun FeedContent(
     recipes: List<RecipeItem>,
     navigateToDetail: (Long) -> Unit
 ) {
+    val topRecommendationsLabel = stringResource(Res.string.top_recommendations)
+    val recipesOfTheWeekLabel = stringResource(Res.string.recipes_of_the_week)
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -187,14 +200,14 @@ private fun FeedContent(
             span = { GridItemSpan(maxLineSpan) }
         ) {
             TopRecipesList(
-                title = "Top Recommendations",
+                title = topRecommendationsLabel,
                 recipes = recipes.reversed(),
                 navigateToDetail = navigateToDetail
             )
         }
 
         recipesOfTheWeek(
-            "Recipes Of the Week",
+            recipesOfTheWeekLabel,
             recipes = recipes,
             navigateToDetail = navigateToDetail
         )

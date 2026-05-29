@@ -316,7 +316,7 @@ toRecipe() extension on RecipeApiItem is the single mapping point from API DTO â
 <!-- SPECKIT START -->
 ## Active Feature Plan
 
-**Feature**: Profile Screen UI (`003-profile-screen`)
-**Plan**: [specs/003-profile-screen/plan.md](../specs/003-profile-screen/plan.md)
-**Spec**: [specs/003-profile-screen/spec.md](../specs/003-profile-screen/spec.md)
+**Feature**: Language Selection Bottom Sheet (`004-language-selection`)
+**Plan**: [specs/004-language-selection/plan.md](../specs/004-language-selection/plan.md)
+**Spec**: [specs/004-language-selection/spec.md](../specs/004-language-selection/spec.md)
 <!-- SPECKIT END -->
